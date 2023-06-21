@@ -1,0 +1,41 @@
+import { createAsyncThunk } from "@reduxjs/toolkit"
+import { login, signup, profilePhoto } from "./auth.service"
+
+export const loginUser = createAsyncThunk("auth/loginUser", async (user) => {
+  try {
+    const response = await login(user)
+    if (response.data.message === "error") {
+      throw new Error(response.data.data)
+    }
+    return response.data
+  } catch (error) {
+    console.log("error login", error)
+    throw new Error(error.message)
+  }
+})
+
+export const signupUser = createAsyncThunk("auth/signupUser", async (data) => {
+  try {
+    const response = await signup(data)
+    if (response.data.message === "error") {
+      throw new Error(response.data)
+    }
+    return response.data
+  } catch (error) {
+    console.log("error signup thunk", error)
+    throw new Error(error.message)
+  }
+})
+
+export const updateImage = createAsyncThunk("auth/update", async (data) => {
+  try {
+    const response = await profilePhoto(data)
+    if (response.data.message === "error") {
+      throw new Error(response.data)
+    }
+    return response.data.data
+  } catch (error) {
+    console.log("update profile Error", error)
+    throw new Error(error.message)
+  }
+})
