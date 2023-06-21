@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext"
 import { useNotification } from "../../hooks/useNotification"
 import { Link } from "react-router-dom"
+import { signupUser } from "./auth.thunks"
 
 export const SignupForm = () => {
   const dispatch = useDispatch()
@@ -37,10 +38,10 @@ export const SignupForm = () => {
     e.preventDefault()
     try {
       setAddRequestStatus("pending")
-      // const user = await dispatch(signupUser(data)).unwrap()
-      // await login(user)
+      const user = await dispatch(signupUser(data)).unwrap()
+      await login(user)
       successNotification("Welcome to Eval! Please add a profile photo")
-      // navigate("/profile")
+      navigate("/profile")
     } catch (error) {
       console.log("Failed to save user", error)
       errorNotification("Error: ", error.message)

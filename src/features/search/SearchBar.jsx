@@ -118,14 +118,14 @@ export const Search = () => {
         className="relative"
       >
         <input
-          className="w-full !px-5 py-3 text-lg rounded-full ring-4 ring-violet-500 focus:outline-none focus:ring focus:ring-violet-200 outline-none transition bg-slate-100"
+          className="w-full !px-5 py-3 text-lg rounded-full ring-4 ring-violet-500 focus:outline-none focus:ring focus:ring-violet-200 outline-none transition"
           type="text"
           placeholder="Type in an address to search..."
           value={search}
           onChange={onChange}
         />
         {/* search results container */}
-        {showResults && (
+        {showResults && results && results.length !== 0 && (
           <div className="absolute text-left w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-56 overflow-y-auto">
             {results &&
               results.map((address, index) => {
