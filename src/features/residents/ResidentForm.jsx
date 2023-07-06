@@ -2,13 +2,16 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { postResident } from "./residents.thunks"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useNotification } from "../../hooks/useNotification"
 
-export const ResidentForm = ({ closeModal, address }) => {
+export const ResidentForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { successNotification, errorNotification } = useNotification()
+  const location = useLocation()
+  const { address } = location.state
+  console.log("hhere is the address", address)
   const {
     register,
     handleSubmit,
@@ -35,13 +38,13 @@ export const ResidentForm = ({ closeModal, address }) => {
       console.log("Failed to save resident", error)
       errorNotification("Could not create new resident, try again.")
     } finally {
-      closeModal()
+      // closeModal()
       handleReset()
     }
   }
   const handleReset = () => {
     reset()
-    closeModal()
+    // closeModal()
   }
   return (
     // <form className="m-1 p-5 md:p-8 lg:p-15" onSubmit={handleSubmit(onSubmit)}>

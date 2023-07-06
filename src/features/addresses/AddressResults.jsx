@@ -1,6 +1,6 @@
 import React from "react"
 import { Search } from "../search/SearchBar"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useSearchParams } from "react-router-dom"
 import { Outlet } from "react-router-dom"
 import { useState, Fragment } from "react"
@@ -9,9 +9,10 @@ import { ResidentForm } from "../residents/ResidentForm"
 import { PlusCircleIcon } from "@heroicons/react/24/solid"
 
 export const AddressSearch = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const address = searchParams.get("src")
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
+  const { address } = location.state
+  console.log(address)
   function closeModal() {
     setIsOpen(false)
   }
@@ -33,7 +34,7 @@ export const AddressSearch = () => {
             <button onClick={openModal}>
               <PlusCircleIcon className="text-amber-500 w-12 h-12" />
             </button>
-            <Transition appear show={isOpen} as={Fragment}>
+            {/* <Transition appear show={isOpen} as={Fragment}>
               <Dialog as="div" className="relative z-20" onClose={closeModal}>
                 <Transition.Child
                   as={Fragment}
@@ -68,11 +69,16 @@ export const AddressSearch = () => {
                   </div>
                 </div>
               </Dialog>
-            </Transition>
+            </Transition> */}
           </div>
         </div>
         <div className="flex flex-row px-4 py-6">
           <p className="text-xl font-light">{address}</p>
+          <div className="block bg-red-300">
+            <Link to="resident/new" state={{ address: address }}>
+              New Residents
+            </Link>
+          </div>
         </div>
       </div>
       <div className="col-start-1 col-end-13">

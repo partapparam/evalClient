@@ -14,6 +14,7 @@ import { RequiredAuth } from "../features/auth/RequiredAuth"
 import { UserProvider } from "../providers/UserContext"
 import { NotificationProvider } from "../providers/NotificationProvider"
 import { Notification } from "../common/components/Notification"
+import { ResidentForm } from "../features/residents/ResidentForm"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 {/* <RequiredAuth> */}
                 <Route path="address" element={<AddressSearch />}>
                   <Route path="residents" element={<ResidentList />} />
+                  <Route path="resident/new" element={<ResidentForm />} />
                 </Route>
                 <Route
                   path="address/residents/:residentId"

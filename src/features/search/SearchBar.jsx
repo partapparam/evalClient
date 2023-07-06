@@ -52,12 +52,12 @@ export const Search = () => {
     resetSearchComplete()
     dispatch(resetResidents())
     if (location.pathname === "/") {
-      navigate(`address/residents?src=${selectedItem.formattedAddress}`, {
-        state: { data: selectedItem.formattedAddress },
+      navigate(`address/residents`, {
+        state: { address: selectedItem.formattedAddress },
       })
     } else {
-      navigate(`?src=${selectedItem.formattedAddress}`, {
-        state: { data: selectedItem.formattedAddress },
+      navigate("residents", {
+        state: { address: selectedItem.formattedAddress },
       })
     }
   }
