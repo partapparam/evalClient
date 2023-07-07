@@ -27,11 +27,11 @@ function App() {
               <Route path="/" element={<LandingPage />}>
                 <Route path="login" element={<LoginForm />} />
                 <Route path="signup" element={<SignupForm />} />
-                {/* <RequiredAuth> */}
                 <Route path="address" element={<AddressSearch />}>
                   <Route path="residents" element={<ResidentList />} />
-                  <Route path="resident/new" element={<ResidentForm />} />
+                  {/* <Route path="add" element={<ResidentForm />} /> */}
                 </Route>
+                <Route path="add/resident" element={<ResidentForm />} />
                 <Route
                   path="address/residents/:residentId"
                   element={

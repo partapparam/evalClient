@@ -1,8 +1,7 @@
 import axios from "axios"
-import { Navigate } from "react-router-dom"
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL_DEV,
 })
 axiosClient.defaults.headers.common["Authorization"] = "test"
 axiosClient.interceptors.request.use(

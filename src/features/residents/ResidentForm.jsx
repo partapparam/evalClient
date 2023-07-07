@@ -27,6 +27,7 @@ export const ResidentForm = () => {
   })
   // TODO handle on submit with resident slice
   const onSubmit = async (data) => {
+    // Add address to form.
     data.address = address
     try {
       const resident = await dispatch(postResident(data)).unwrap()
@@ -38,20 +39,21 @@ export const ResidentForm = () => {
       console.log("Failed to save resident", error)
       errorNotification("Could not create new resident, try again.")
     } finally {
-      // closeModal()
       handleReset()
     }
   }
   const handleReset = () => {
     reset()
-    // closeModal()
+    navigate("/address/residents", { state: { address: address } })
   }
   return (
-    // <form className="m-1 p-5 md:p-8 lg:p-15" onSubmit={handleSubmit(onSubmit)}>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="mx-5 md:mx-16 lg:mx-28 my-10"
+    >
       <div className="space-y-8">
         <div className="border-b border-gray-900/10 pb-12">
-          <h1 className="font-extrabold text-2xl sm:text-4xl leading-7 text-gray-900">
+          <h1 className="font-extrabold text-3xl sm:text-4xl leading-7 text-gray-900">
             New Resident
           </h1>
           <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -165,8 +167,6 @@ export const ResidentForm = () => {
           </div>
         </div>
       </div>
-      {/* TODO - Make the apt input hidden unless restype = multi */}
-
       <div className="mt-3 flex items-center justify-end gap-x-6">
         <button
           type="button"
@@ -179,7 +179,7 @@ export const ResidentForm = () => {
         </button>
         <input
           type="submit"
-          className="rounded-md bg-emerald-500 py-2 px-5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-600 "
+          className="rounded-md bg-emerald-700 py-2 px-1 text-sm font-semibold text-white shadow-sm hover:bg-emerald-800 "
         />
       </div>
     </form>
