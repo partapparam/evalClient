@@ -11,7 +11,6 @@ export const ResidentForm = () => {
   const { successNotification, errorNotification } = useNotification()
   const location = useLocation()
   const { address } = location.state
-  console.log("hhere is the address", address)
   const {
     register,
     handleSubmit,
@@ -36,7 +35,6 @@ export const ResidentForm = () => {
       )
       navigate(`residents/${resident.residentId}`)
     } catch (error) {
-      console.log("Failed to save resident", error)
       errorNotification("Could not create new resident, try again.")
     } finally {
       handleReset()
@@ -52,15 +50,11 @@ export const ResidentForm = () => {
       className="mx-5 md:mx-16 lg:mx-28 my-10"
     >
       <div className="space-y-8">
-        <div className="border-b border-gray-900/10 pb-12">
-          <h1 className="font-extrabold text-3xl sm:text-4xl leading-7 text-gray-900">
+        <div className="border-b border-gray-900/10 pb-10">
+          <h1 className="font-extrabold text-3xl sm:text-4xl leading-7 text-gray-900 py-3">
             New Resident
           </h1>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            This information will be used public, so please be careful what you
-            enter.
-          </p>
-
+          <p className="text-lg font-semibold">{address}</p>
           <div className="mt-3 grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
@@ -167,6 +161,10 @@ export const ResidentForm = () => {
           </div>
         </div>
       </div>
+      <p className="mt-1 text-sm leading-6 text-gray-600">
+        This information will be reviewed and made public, please be careful
+        what you enter.
+      </p>
       <div className="mt-3 flex items-center justify-end gap-x-6">
         <button
           type="button"

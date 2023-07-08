@@ -28,15 +28,10 @@ const residentsSlice = createSlice({
       })
       .addCase(postResident.fulfilled, (state, action) => {
         state.status = "success"
-        console.log("success postResident Slice")
-        console.log(action.payload)
         state.cards.push(action.payload)
       })
       .addCase(postResident.rejected, (state, action) => {
         state.status = "failed"
-        console.log("failed postResident Slice")
-
-        console.log("the request failed", action.error.message)
       })
   },
 })

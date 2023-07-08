@@ -6,7 +6,6 @@ import { Outlet } from "react-router-dom"
 export const AddressSearch = () => {
   const location = useLocation()
   const { address } = location.state
-  console.log(address)
 
   return (
     <div className="grid grid-cols-12 mx-5 md:mx-16 lg:mx-28 my-10">

@@ -8,7 +8,7 @@ export const ResidentCard = ({ resident }) => {
       <div className="relative bg-slate-100 hover:bg-slate-50 hover:shadow-xl p-10 shadow-md rounded-lg mx-auto transition-all">
         <div className="mx-auto">
           <div>
-            <div className="flex justify-between items-center  py-4 text-base leading-7 text-gray-800 border-b ">
+            <div className="flex justify-between items-baseline py-4 text-base leading-7 text-gray-800 border-b ">
               <h1 className="text-4xl font-bold py-2">
                 {resident.firstName.slice(0, 1)}. {resident.lastName}
               </h1>
