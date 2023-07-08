@@ -32,10 +32,14 @@ export const LoginForm = () => {
     try {
       const user = await dispatch(loginUser(data)).unwrap()
       await login(user)
-      // navigate(state?.path || "/profile")
-      navigate("/profile")
+
+      if (state?.address) {
+        navigate("/")
+        successNotification("Login successful")
+      } else {
+        navigate("/profile")
+      }
     } catch (error) {
-      console.log("Failed to login user", error)
       errorNotification(`Failed to login: ${error.message}`)
     } finally {
       reset()

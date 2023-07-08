@@ -59,10 +59,7 @@ export const ReviewForm = ({ closeModal, resident }) => {
 
           <div className="my-6 grid grid-cols-1 gap-y-8 gap-x-6">
             <div>
-              <label
-                htmlFor="star"
-                className="block  text-md sm:text-lg font-medium text-gray-900"
-              >
+              <label htmlFor="star" className="block text-gray-900">
                 Rate your overall experience.
               </label>
               <div className="mt-2">
