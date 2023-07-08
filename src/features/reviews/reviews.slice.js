@@ -13,7 +13,6 @@ const reviewsSlice = createSlice({
   initialState: initialState,
   reducers: {
     clearReviews(state, action) {
-      console.log("clear review called in the slice")
       state.cards = []
       state.loading = false
       return
@@ -29,7 +28,6 @@ const reviewsSlice = createSlice({
         state.cards = state.cards.concat(action.payload)
       })
       .addCase(fetchReviewsByResident.rejected, (state, action) => {
-        console.log("Slice - request rejected")
         state.loading = false
       })
       .addCase(fetchReviewsByUser.pending, (state, action) => {
@@ -41,11 +39,8 @@ const reviewsSlice = createSlice({
       })
       .addCase(postReview.fulfilled, (state, action) => {
         state.cards = [action.payload, ...state.cards]
-        console.log("post Resident success")
       })
-      .addCase(postReview.rejected, (state, action) => {
-        console.log("post resident failed", action.error.message)
-      })
+      .addCase(postReview.rejected, (state, action) => {})
   },
 })
 

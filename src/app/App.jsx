@@ -31,7 +31,14 @@ function App() {
                   <Route path="residents" element={<ResidentList />} />
                   {/* <Route path="add" element={<ResidentForm />} /> */}
                 </Route>
-                <Route path="add/resident" element={<ResidentForm />} />
+                <Route
+                  path="add/resident"
+                  element={
+                    <RequiredAuth>
+                      <ResidentForm />
+                    </RequiredAuth>
+                  }
+                />
                 <Route
                   path="address/residents/:residentId"
                   element={
