@@ -1,21 +1,10 @@
 import React, { Fragment, useContext } from "react"
-import { Disclosure, Menu, Transition } from "@headlessui/react"
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import { Disclosure } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext"
 
-const navigation = [
-  { name: "Signup", href: "#", current: false },
-  { name: "Login", href: "#", current: false },
-  { name: "Profile", href: "#", current: false },
-  { name: "Logout", href: "#", current: false },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
-}
-
-export const Example = () => {
+export const NavBar = () => {
   const { isLoggedIn, logout } = useContext(UserContext)
   const navigate = useNavigate()
 

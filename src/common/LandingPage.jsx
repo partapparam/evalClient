@@ -1,12 +1,11 @@
 import React from "react"
 import { Outlet } from "react-router-dom"
-import { NavigationBar } from "./NavigationBar"
-import { Example } from "./components/Example"
+import { NavBar } from "./components/NavBar"
 
 export const LandingPage = () => {
   return (
     <>
-      <Example />
+      <NavBar />
       <Outlet />
       {/* TODO - add in Footer */}
     </>
