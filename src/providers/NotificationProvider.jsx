@@ -1,5 +1,16 @@
 import React from "react"
-import { useState, useCallback, createContext } from "react"
+import { useState, useMemo, createContext } from "react"
+import { createPortal } from "react-dom"
+import { Notification } from "../common/components/Notification"
+
+function generateUEID() {
+  let first = (Math.random() * 46656) | 0
+  let second = (Math.random() * 46656) | 0
+  first = ("000" + first.toString(36)).slice(-3)
+  second = ("000" + second.toString(36)).slice(-3)
+
+  return first + second
+}
 
 export const NotificationContext = createContext({
   notification: null,
@@ -8,32 +19,45 @@ export const NotificationContext = createContext({
 })
 
 // This is provided to the rest of the app in Route Setup. Children are all components that will have access to this context
-export const NotificationProvider = ({ children }) => {
-  const [notification, setNotification] = useState(null)
-
-  // Set and Remove Notification
-  const addNotification = (message, status) =>
-    setNotification({ message, status })
-  const removeNotification = () => setNotification(null)
-
-  // UseCallback will memoize our function so it not recreated on re-renders
-  const contextValue = {
-    notification,
-    addNotification: useCallback((message, status) => {
-      addNotification(message, status)
-      setTimeout(() => {
-        removeNotification()
-      }, 3000)
-    }, []),
-    // removeNotification: useCallback(() => {
-    //   console.log("removie Notification called")
-    //   removeNotification()
-    // }, []),
+export const NotificationProvider = (props) => {
+  const [notifications, setNotifications] = useState([])
+  const open = (content, status) => {
+    console.log("open is run")
+    setNotifications((currentNotifications) => [
+      ...currentNotifications,
+      { id: generateUEID(), content, status },
+    ])
   }
+
+  const close = (id) => {
+    console.log("close is run")
+    setNotifications((currentToasts) =>
+      currentToasts.filter((toast) => toast.id !== id)
+    )
+  }
+
+  // Memoize contextValue
+  const contextValue = useMemo(() => ({ open }), [])
 
   return (
     <NotificationContext.Provider value={contextValue}>
-      {children}
+      {props.children}
+
+      {createPortal(
+        <div className="toasts-wrapper">
+          {notifications &&
+            notifications.map((notification) => (
+              <Notification
+                key={notification.id}
+                close={() => close(notification.id)}
+              >
+                {notification.status} + {notification.content} +{" "}
+                {notification.id}
+              </Notification>
+            ))}
+        </div>,
+        document.body
+      )}
     </NotificationContext.Provider>
   )
 }

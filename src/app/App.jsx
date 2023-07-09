@@ -13,7 +13,6 @@ import { ReviewsList } from "../features/reviews/ReviewsList"
 import { RequiredAuth } from "../features/auth/RequiredAuth"
 import { UserProvider } from "../providers/UserContext"
 import { NotificationProvider } from "../providers/NotificationProvider"
-import { Notification } from "../common/components/Notification"
 import { ResidentForm } from "../features/residents/ResidentForm"
 
 function App() {
@@ -22,14 +21,12 @@ function App() {
       <NotificationProvider>
         <BrowserRouter>
           <div className="App">
-            <Notification />
             <Routes>
               <Route path="/" element={<LandingPage />}>
                 <Route path="login" element={<LoginForm />} />
                 <Route path="signup" element={<SignupForm />} />
                 <Route path="address" element={<AddressSearch />}>
                   <Route path="residents" element={<ResidentList />} />
-                  {/* <Route path="add" element={<ResidentForm />} /> */}
                 </Route>
                 <Route
                   path="add/resident"

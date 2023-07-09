@@ -48,7 +48,7 @@ export const NavBar = () => {
                       src={process.env.REACT_APP_LOGO_URL}
                       alt="Your Company"
                     />
-                    <span className="hidden lg:block text-yellow-400 font-light inline text-xs ">
+                    <span className="hidden text-yellow-400 font-light lg:inline text-xs ">
                       beta
                     </span>
                   </Link>

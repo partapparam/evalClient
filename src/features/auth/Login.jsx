@@ -14,7 +14,7 @@ export const LoginForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { state } = useLocation()
-  const { successNotification, errorNotification } = useNotification()
+  const notification = useNotification()
   // TODO errors and validation
   const {
     register,
@@ -35,12 +35,12 @@ export const LoginForm = () => {
 
       if (state?.address) {
         navigate("/")
-        successNotification("Login successful")
+        // successNotification("Login successful")
       } else {
         navigate("/profile")
       }
     } catch (error) {
-      errorNotification(`Failed to login: ${error.message}`)
+      notification.open(`Failed to login: ${error.message}`, "Error")
     } finally {
       reset()
     }
