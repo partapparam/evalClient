@@ -21,11 +21,11 @@ export const NotificationContext = createContext({
 // This is provided to the rest of the app in Route Setup. Children are all components that will have access to this context
 export const NotificationProvider = (props) => {
   const [notifications, setNotifications] = useState([])
-  const open = (content, status) => {
+  const open = (message, status) => {
     console.log("open is run")
     setNotifications((currentNotifications) => [
       ...currentNotifications,
-      { id: generateUEID(), content, status },
+      { id: generateUEID(), message, status },
     ])
   }
 
@@ -44,16 +44,15 @@ export const NotificationProvider = (props) => {
       {props.children}
 
       {createPortal(
-        <div className="toasts-wrapper">
+        <div className="absolute top-8 right-6 w-[calc(100vw-50px)] sm:w-2/5 md:w-1/4">
           {notifications &&
             notifications.map((notification) => (
               <Notification
                 key={notification.id}
                 close={() => close(notification.id)}
-              >
-                {notification.status} + {notification.content} +{" "}
-                {notification.id}
-              </Notification>
+                message={notification.message}
+                status={notification.status}
+              />
             ))}
         </div>,
         document.body
