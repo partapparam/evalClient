@@ -11,7 +11,7 @@ import { signupUser } from "./auth.thunks"
 export const SignupForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { successNotification, errorNotification } = useNotification()
+  const notification = useNotification()
   const [addRequestStatus, setAddRequestStatus] = useState("idle")
   const { isLoggedIn, login } = useContext(UserContext)
   const password = useRef({})
@@ -40,11 +40,13 @@ export const SignupForm = () => {
       setAddRequestStatus("pending")
       const user = await dispatch(signupUser(data)).unwrap()
       await login(user)
-      successNotification("Welcome to Eval! Please add a profile photo")
+      notification.open(
+        "Welcome to Eval! Please add a profile photo",
+        "success"
+      )
       navigate("/profile")
     } catch (error) {
-      console.log("Failed to save user", error)
-      errorNotification("Error: ", error.message)
+      notification.open(`Error: ${error.message}`, "error")
     } finally {
       reset()
       setAddRequestStatus("idle")

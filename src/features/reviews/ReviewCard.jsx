@@ -1,5 +1,4 @@
 import React from "react"
-import { FaceSmileIcon } from "@heroicons/react/24/solid"
 import { StarRating } from "../rating/StarRating"
 import { formatDatePublic } from "../../common/convertDate"
 

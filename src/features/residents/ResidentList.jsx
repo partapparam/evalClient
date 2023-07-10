@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { Link, useOutletContext, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ResidentCard } from "./ResidentCard"
 import { ResidentsNotFound } from "./ResidentsNotFound"
 import { useEffect } from "react"

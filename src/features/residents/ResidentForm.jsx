@@ -9,7 +9,7 @@ import { selectAddressSelector } from "../addresses/address.selectors"
 export const ResidentForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { successNotification, errorNotification } = useNotification()
+  const notification = useNotification()
   const address = useSelector(selectAddressSelector())
   const {
     register,
@@ -30,12 +30,13 @@ export const ResidentForm = () => {
     data.address = address
     try {
       const resident = await dispatch(postResident(data)).unwrap()
-      successNotification(
-        `${resident.firstName} ${resident.lastName} is now a resident`
+      notification.open(
+        `${resident.firstName} ${resident.lastName} is now a resident`,
+        "success"
       )
       navigate(`residents/${resident.residentId}`)
     } catch (error) {
-      errorNotification("Could not create new resident, try again.")
+      notification.open("Could not create new resident, try again.", "error")
     } finally {
       handleReset()
     }

@@ -1,5 +1,4 @@
 import React from "react"
-import { ReviewCard } from "../reviews/ReviewCard"
 import { Link, Outlet } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectResidentByIdSelector } from "./residents.selectors"

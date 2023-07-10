@@ -9,7 +9,7 @@ import { useNotification } from "../../hooks/useNotification"
 export const ReviewForm = ({ closeModal, resident }) => {
   const dispatch = useDispatch()
   const { getItem } = useLocalStorage()
-  const { successNotification, errorNotification } = useNotification()
+  const notification = useNotification()
   const {
     register,
     handleSubmit,
@@ -32,10 +32,10 @@ export const ReviewForm = ({ closeModal, resident }) => {
     data.reviewerProfilePhoto = reviewer.profilePhoto
     try {
       const review = await dispatch(postReview(data)).unwrap()
-      successNotification("Review saved.")
+      notification.open("Review saved.", "success")
     } catch (error) {
       console.log("failed trying to save reviewForm", error)
-      errorNotification("Review was not saved, try again.")
+      notification.open("Review was not saved, try again.", "error")
     } finally {
       handleReset()
     }

@@ -14,7 +14,7 @@ export const Profile = () => {
   const user = getItem("user")
   const [imagePreview, setImagePreview] = useState("")
   const [imageFile, setImageFile] = useState(null)
-  const { successNotification, errorNotification } = useNotification()
+  const notification = useNotification()
   const [loadingView, setLoadingView] = useState(false)
 
   const onSubmit = async (data, event) => {
@@ -26,11 +26,11 @@ export const Profile = () => {
       imageForm.append("profilePhoto", imageFile)
       //   imageForm.append("oldPhoto", user.profilePhoto)
       const returnedUser = await dispatch(updateImage(imageForm)).unwrap()
-      successNotification("Profile photo changed")
+      notification.open("Profile photo changed", "success")
       setItem("user", returnedUser)
     } catch (error) {
       console.log("Failed to save image", error)
-      errorNotification(error.message)
+      notification.open(error.message, "error")
     } finally {
       reset()
       setLoadingView(false)

@@ -1,11 +1,8 @@
 import React from "react"
 import { Search } from "../search/SearchBar"
 import { ClipboardIcon } from "@heroicons/react/24/solid"
-import { useNotification } from "../../hooks/useNotification"
 
 export const Home = () => {
-  const { addNotification } = useNotification()
-
   return (
     <div className="h-screen">
       <div
