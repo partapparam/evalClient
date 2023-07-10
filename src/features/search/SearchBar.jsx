@@ -10,6 +10,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { useDebounce } from "../../hooks/useDebounce"
 import { useDispatch } from "react-redux"
 import { resetResidents } from "../residents/residents.slice"
+import { addAddress, removeAddress } from "../addresses/address.slice"
 
 export const Search = () => {
   const [search, setSearch] = useState("")
@@ -18,7 +19,6 @@ export const Search = () => {
   const [focusedIndex, setFocusedIndex] = useState(-1)
   const resultsContainer = useRef(null)
   const navigate = useNavigate()
-  const [searchParams, setSearchParams] = useSearchParams()
   const location = useLocation()
   const dispatch = useDispatch()
 
@@ -51,6 +51,7 @@ export const Search = () => {
     setSearch("")
     resetSearchComplete()
     dispatch(resetResidents())
+    dispatch(addAddress(selectedItem.formattedAddress))
     if (location.pathname === "/") {
       navigate(`address/residents`, {
         state: { address: selectedItem.formattedAddress },

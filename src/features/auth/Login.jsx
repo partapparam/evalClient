@@ -1,6 +1,5 @@
 import React from "react"
 import { useForm } from "react-hook-form"
-import logo from "../../common/Eval_blue.svg"
 import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useContext } from "react"
@@ -15,7 +14,6 @@ export const LoginForm = () => {
   const navigate = useNavigate()
   const { state } = useLocation()
   const notification = useNotification()
-  // TODO errors and validation
   const {
     register,
     handleSubmit,
@@ -32,15 +30,9 @@ export const LoginForm = () => {
     try {
       const user = await dispatch(loginUser(data)).unwrap()
       await login(user)
-
-      if (state?.address) {
-        navigate("/")
-        // successNotification("Login successful")
-      } else {
-        navigate("/profile")
-      }
+      navigate(state?.path || "/profile", { replace: true })
     } catch (error) {
-      notification.open(`Failed to login: ${error.message}`, "Error")
+      notification.open(`Failed to login: ${error.message}`, "error")
     } finally {
       reset()
     }

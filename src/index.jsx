@@ -6,9 +6,8 @@ import reportWebVitals from "./reportWebVitals"
 import { Provider } from "react-redux"
 import { store } from "./common/store"
 import Radar from "radar-sdk-js"
-import { publishableKey } from "./common/constants"
 
-Radar.initialize(publishableKey)
+Radar.initialize(process.env.REACT_APP_RADAR_PUBLISHABLE_KEY)
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(

@@ -1,16 +1,16 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { postResident } from "./residents.thunks"
-import { useDispatch } from "react-redux"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { useNotification } from "../../hooks/useNotification"
+import { selectAddressSelector } from "../addresses/address.selectors"
 
 export const ResidentForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { successNotification, errorNotification } = useNotification()
-  const location = useLocation()
-  const { address } = location.state
+  const address = useSelector(selectAddressSelector())
   const {
     register,
     handleSubmit,
@@ -42,7 +42,7 @@ export const ResidentForm = () => {
   }
   const handleReset = () => {
     reset()
-    navigate("/address/residents", { state: { address: address } })
+    navigate("/address/residents")
   }
   return (
     <form

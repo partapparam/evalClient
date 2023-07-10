@@ -6,11 +6,11 @@ import { useNotification } from "../../hooks/useNotification"
 export const RequiredAuth = ({ children }) => {
   const { isLoggedIn } = useContext(UserContext)
   const location = useLocation()
-  const { errorNotification } = useNotification()
+  const notification = useNotification()
 
   useEffect(() => {
     if (isLoggedIn === false) {
-      errorNotification("You must be logged in. ")
+      notification.open("You must be logged in.", "Error: ")
     }
   }, [isLoggedIn])
 

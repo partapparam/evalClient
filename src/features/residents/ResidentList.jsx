@@ -5,6 +5,7 @@ import { ResidentsNotFound } from "./ResidentsNotFound"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllResidentsSelector } from "./residents.selectors"
+import { selectAddressSelector } from "../addresses/address.selectors"
 import { fetchResidents } from "./residents.thunks"
 import { LoadingSpinner } from "../../common/components/LoadingSpinner"
 import { PlusCircleIcon } from "@heroicons/react/24/solid"
@@ -15,11 +16,11 @@ import { UserContext } from "../../providers/UserContext"
 export const ResidentList = () => {
   const dispatch = useDispatch()
   const residentStatus = useSelector((state) => state.residents.status)
-  const { state } = useLocation()
-  const address = useOutletContext()
   const [isOpen, setIsOpen] = useState(false)
   const { isLoggedIn } = useContext(UserContext)
   const location = useLocation()
+  const residents = useSelector(selectAllResidentsSelector)
+  const address = useSelector(selectAddressSelector)
 
   useEffect(() => {
     if (residentStatus === "idle") {
@@ -30,8 +31,6 @@ export const ResidentList = () => {
       }
     }
   }, [dispatch, address, residentStatus])
-
-  const residents = useSelector(selectAllResidentsSelector)
 
   const residentView = residents.map((r) => (
     <div key={r.residentId}>
@@ -87,10 +86,7 @@ export const ResidentList = () => {
                     Login in to your account to continue.
                   </Dialog.Title>
                   <div className="mt-2 text-right">
-                    <Link
-                      to="../../login"
-                      state={{ path: location.pathname, address: address }}
-                    >
+                    <Link to="../../login" state={{ path: location.pathname }}>
                       <button
                         type="button"
                         className="rounded-md bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30"
@@ -115,7 +111,7 @@ export const ResidentList = () => {
         <div className="flex flex-row justify-between items-center px-3 py-6">
           <p className="font-extrabold text-3xl sm:text-4xl">Residents</p>
           {isLoggedIn ? (
-            <Link to="../../add/resident" state={{ address: address }}>
+            <Link to="../../add/resident">
               <PlusCircleIcon className="text-amber-500 w-12 h-12" />
             </Link>
           ) : (
