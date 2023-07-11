@@ -9,8 +9,8 @@ export const NavBar = () => {
   const navigate = useNavigate()
 
   const handleLogout = async () => {
-    await logout()
     navigate("/")
+    await logout()
   }
 
   return (
@@ -57,25 +57,26 @@ export const NavBar = () => {
                   <div className="flex space-x-4">
                     {!isLoggedIn && (
                       <>
-                        <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                          <Link to="/login">
+                        <Link to="/login">
+                          <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                             <span>Login</span>
-                          </Link>
-                        </p>
-                        <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                          <Link to="/signup">
+                          </p>
+                        </Link>
+
+                        <Link to="/signup">
+                          <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                             <span>Signup</span>
-                          </Link>
-                        </p>
+                          </p>
+                        </Link>
                       </>
                     )}
                     {isLoggedIn && (
                       <>
-                        <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                          <Link to="/profile">
+                        <Link to="/profile">
+                          <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                             <span>Profile</span>
-                          </Link>
-                        </p>
+                          </p>
+                        </Link>
                         <p
                           className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                           onClick={handleLogout}

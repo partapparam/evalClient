@@ -68,31 +68,31 @@ export const Search = () => {
     })
   }, [focusedIndex])
 
-  const handleKeyDown = (e) => {
-    const { key } = e
-    let nextIndexCount = 0
+  // const handleKeyDown = (e) => {
+  //   const { key } = e
+  //   let nextIndexCount = 0
 
-    // move down
-    if (key === "ArrowDown")
-      nextIndexCount = (focusedIndex + 1) % results.length
+  //   // move down
+  //   if (key === "ArrowDown")
+  //     nextIndexCount = (focusedIndex + 1) % results.length
 
-    // move up
-    if (key === "ArrowUp")
-      nextIndexCount = (focusedIndex + results.length - 1) % results.length
+  //   // move up
+  //   if (key === "ArrowUp")
+  //     nextIndexCount = (focusedIndex + results.length - 1) % results.length
 
-    // hide search results
-    if (key === "Escape") {
-      resetSearchComplete()
-    }
+  //   // hide search results
+  //   if (key === "Escape") {
+  //     resetSearchComplete()
+  //   }
 
-    // select the current item
-    if (key === "Enter") {
-      e.preventDefault()
-      handleSelection(focusedIndex)
-    }
+  //   // select the current item
+  //   if (key === "Enter") {
+  //     e.preventDefault()
+  //     handleSelection(focusedIndex)
+  //   }
 
-    setFocusedIndex(nextIndexCount)
-  }
+  //   setFocusedIndex(nextIndexCount)
+  // }
 
   const onChange = (e) => {
     const query = e.target.value
@@ -110,7 +110,7 @@ export const Search = () => {
         className="relative"
       >
         <input
-          className="w-full !px-5 py-3 text-lg rounded-full ring-4 ring-violet-300 focus:rounded-lg focus:outline-none focus:ring focus:ring-violet-500 outline-none transition"
+          className="w-full !px-6 py-3 rounded-[25px] ring-4 text-sm sm:text-md focus:shadow-sm ring-violet-300 focus:rounded-b-sm focus:outline-none focus:ring focus:ring-violet-500 outline-none duration-300"
           type="text"
           placeholder="Type in an address to search..."
           value={search}
@@ -118,7 +118,7 @@ export const Search = () => {
         />
         {/* search results container */}
         {showResults && results && results.length !== 0 && (
-          <div className="absolute text-left w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-56 overflow-y-auto">
+          <div className="absolute text-sm sm:text-md  text-left w-full p-2 bg-white shadow-sm rounded-bl rounded-br max-h-56 overflow-y-auto">
             {results &&
               results.map((address, index) => {
                 return (
@@ -126,7 +126,7 @@ export const Search = () => {
                     key={index}
                     onMouseDown={() => handleSelection(index)}
                     ref={index === focusedIndex ? resultsContainer : null}
-                    className="cursor-pointer hover:bg-blue-300 p-2"
+                    className="cursor-pointer hover:bg-violet-300 p-2"
                     style={{
                       backgroundColor: index === focusedIndex ? "#93c5fd" : "",
                     }}
