@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useNotification } from "../../hooks/useNotification"
 import { selectAddressSelector } from "../addresses/address.selectors"
+import { Link } from "react-router-dom"
+import { NoAddress } from "../addresses/NoAddress"
 
 export const ResidentForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const notification = useNotification()
-  const address = useSelector(selectAddressSelector())
+  const address = useSelector(selectAddressSelector)
   const {
     register,
     handleSubmit,
@@ -45,7 +47,8 @@ export const ResidentForm = () => {
     reset()
     navigate("/address/residents")
   }
-  return (
+
+  const FormView = (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="mx-5 md:mx-16 lg:mx-28 my-10"
@@ -182,5 +185,21 @@ export const ResidentForm = () => {
         />
       </div>
     </form>
+  )
+  return (
+    <>
+      {address ? (
+        FormView
+      ) : (
+        <div className="text-center">
+          <NoAddress />
+          <Link to="/" replace>
+            <button className="bg-slate-100 rounded-md hover:bg-slate-200 shadow-sm p-3">
+              Return to Home
+            </button>
+          </Link>
+        </div>
+      )}
+    </>
   )
 }
