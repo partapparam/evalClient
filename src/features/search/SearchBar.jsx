@@ -110,7 +110,7 @@ export const Search = () => {
         className="relative"
       >
         <input
-          className="w-full !px-5 py-3 text-lg rounded-full ring-4 ring-violet-300 focus:outline-none focus:ring focus:ring-violet-500 outline-none transition"
+          className="w-full !px-5 py-3 text-lg rounded-full ring-4 ring-violet-300 focus:rounded-lg focus:outline-none focus:ring focus:ring-violet-500 outline-none transition"
           type="text"
           placeholder="Type in an address to search..."
           value={search}

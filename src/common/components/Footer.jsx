@@ -5,10 +5,13 @@ export const Footer = () => {
   const { register, reset } = useForm()
 
   return (
-    <div className="h-36 w-full text-black bg-slate-50">
-      <h1>Footer</h1>
-      <h2>Welcome to Eval</h2>
-      <h3>Have feedback, leave it here</h3>
+    <div className="w-full text-black bg-purple-200 flex justify-between px-5 py-1 text-[10px] sm:text-[11px] font-light">
+      <p>2023 Eval. All Rights Reserved.</p>
+      <div className="flex flex-row space-x-6">
+        <p className="hidden sm:block">Privacy Policy</p>
+        <p className="hidden sm:block">Contact</p>
+        <p>Share Feedback</p>
+      </div>
     </div>
   )
 }
