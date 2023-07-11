@@ -4,10 +4,10 @@ import { ClipboardIcon } from "@heroicons/react/24/solid"
 
 export const Home = () => {
   return (
-    <div className="h-screen">
+    <div>
       <div
         className="bg-gradient-to-b from-purple-800 via-purple-500 to-orange-300
-       h-full grid grid-rows-2 w-full grid-cols-12"
+       grid grid-rows-2 w-full grid-cols-12 h-96"
       >
         <div className="rows-span-1 self-end justify-self-center col-span-12">
           <img
