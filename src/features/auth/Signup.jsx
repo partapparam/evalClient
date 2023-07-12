@@ -81,7 +81,7 @@ export const SignupForm = () => {
                     name="firstName"
                     id="firstName"
                     autoComplete="firstName"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm outline-2 outline outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                   />
                   {errors.firstName?.type === "required" && (
                     <p className="form-input-error text-red-500" role="alert">
@@ -107,7 +107,7 @@ export const SignupForm = () => {
                     name="lastName"
                     id="lastName"
                     autoComplete="lastName"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm outline-2 outline outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                   />
                   {errors.lastName?.type === "required" && (
                     <p className="text-red-500" role="alert">
@@ -133,7 +133,7 @@ export const SignupForm = () => {
                   name="jobTitle"
                   id="jobTitle"
                   placeholder="Salesperson, Technician, Installer etc."
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm outline-2 outline outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition px-3"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
                 {errors.jobTitle?.type === "required" && (
                   <p className="text-red-500" role="alert">
@@ -157,7 +157,7 @@ export const SignupForm = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm outline-2 outline outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
                 {errors.email?.type === "required" && (
                   <p className="form-input-error text-red-500" role="alert">
@@ -185,7 +185,7 @@ export const SignupForm = () => {
                   type="password"
                   name="password"
                   id="password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm outline-2 outline outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
                 {errors.password && (
                   <p className="text-red-500">{errors.password.message}</p>
@@ -212,7 +212,7 @@ export const SignupForm = () => {
                   type="password"
                   name="confirmPassword"
                   id="confirmPassword"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm outline-2 outline outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
                 {errors.confirmPassword && (
                   <p className="text-red-500">
