@@ -14,6 +14,7 @@ import { RequiredAuth } from "../features/auth/RequiredAuth"
 import { UserProvider } from "../providers/UserContext"
 import { NotificationProvider } from "../providers/NotificationProvider"
 import { ResidentForm } from "../features/residents/ResidentForm"
+import { ForgotPasswordForm } from "../features/auth/ForgotPasswordForm"
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
               <Route path="/" element={<LandingPage />}>
                 <Route path="login" element={<LoginForm />} />
                 <Route path="signup" element={<SignupForm />} />
+                <Route
+                  path="forgot-password"
+                  element={<ForgotPasswordForm />}
+                />
                 <Route path="address" element={<AddressSearch />}>
                   <Route path="residents" element={<ResidentList />} />
                 </Route>

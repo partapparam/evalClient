@@ -89,12 +89,12 @@ export const LoginForm = () => {
             <div>
               <input
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md py-2 px-3 text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="group relative flex w-full justify-center rounded-md py-2 px-3 text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600"
               />
             </div>
           </form>
           <div className="font-light text-gray-400 text-center hover:text-gray-900 transition underline">
-            <Link to="/">Forgot password.</Link>
+            <Link to="/forgot-password">Forgot password.</Link>
           </div>
         </div>
       </div>
