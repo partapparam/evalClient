@@ -94,7 +94,7 @@ export const LoginForm = () => {
             </div>
           </form>
           <div className="font-light text-gray-400 text-center hover:text-gray-900 transition underline">
-            <Link to="/signup">New to Eval? Create an account </Link>
+            <Link to="/">Forgot password.</Link>
           </div>
         </div>
       </div>
