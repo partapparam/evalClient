@@ -1,14 +1,27 @@
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { forgotPassword } from "./auth.service"
+import { useNotification } from "../../hooks/useNotification"
 
 export const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("")
   const navigate = useNavigate()
+  const notification = useNotification()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(email)
+    try {
+      const response = await forgotPassword(email)
+      console.log(response)
+    } catch (error) {
+      notification.open(
+        `Failed to reset your password: ${error.message}`,
+        "error"
+      )
+    } finally {
+      handleCancel()
+    }
   }
 
   const handleCancel = () => {

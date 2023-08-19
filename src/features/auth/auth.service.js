@@ -30,4 +30,14 @@ const profilePhoto = async (body) => {
   return response
 }
 
-export { login, signup, profilePhoto }
+const forgotPassword = async (body) => {
+  try {
+    const response = await axiosClient.post("auth/password/forgot", body)
+    return response
+  } catch (error) {
+    console.log("Auth Signup error", error)
+    throw new Error("Signup service failed")
+  }
+}
+
+export { login, signup, profilePhoto, forgotPassword }
