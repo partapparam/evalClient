@@ -63,7 +63,7 @@ export const LoginForm = () => {
                   type="email"
                   required
                   autoComplete="email"
-                  className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 px-3 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600"
+                  className="relative block w-full rounded-md border-2 my-2 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 px-3 border-gray-300 focus:border-blue-600 hover:border-blue-600"
                   placeholder="Email address"
                 />
               </div>
@@ -80,9 +80,12 @@ export const LoginForm = () => {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 px-3 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600"
+                  className="relative block w-full rounded-md border-2 my-2 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 px-3 border-gray-300 focus:border-blue-600 hover:border-blue-600"
                   placeholder="Password"
                 />
+              </div>
+              <div className="font-light text-gray-400 text-right hover:text-gray-900 transition text-sm py-2">
+                <Link to="/forgot-password">Forgot password?</Link>
               </div>
             </div>
 
@@ -93,8 +96,11 @@ export const LoginForm = () => {
               />
             </div>
           </form>
-          <div className="font-light text-gray-400 text-center hover:text-gray-900 transition underline">
-            <Link to="/forgot-password">Forgot password.</Link>
+          <div className="font-light text-purple-500 text-center hover:text-purple-700 transition">
+            <Link to="/signup">
+              <span className="text-gray-900">Need an account? </span>Sign up
+              here.
+            </Link>
           </div>
         </div>
       </div>
