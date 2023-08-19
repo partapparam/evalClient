@@ -37,6 +37,7 @@ export const ForgotPasswordForm = () => {
             <h2 className="mt-4 text-center text-3xl font-extrabold text-gray-900">
               Forgot Password
             </h2>
+            <p className="text-center">Enter your email</p>
           </div>
           <form className="mt-8 space-y-6 text-left" onSubmit={handleSubmit}>
             <div className="-space-y-px rounded-md shadow-sm">

@@ -15,6 +15,8 @@ import { UserProvider } from "../providers/UserContext"
 import { NotificationProvider } from "../providers/NotificationProvider"
 import { ResidentForm } from "../features/residents/ResidentForm"
 import { ForgotPasswordForm } from "../features/auth/ForgotPasswordForm"
+import { ForgotPassword } from "../features/auth/ForgotPassword"
+import { ForgotPasswordConfirm } from "../features/auth/ForgotPasswordConfirm"
 
 function App() {
   return (
@@ -26,10 +28,10 @@ function App() {
               <Route path="/" element={<LandingPage />}>
                 <Route path="login" element={<LoginForm />} />
                 <Route path="signup" element={<SignupForm />} />
-                <Route
-                  path="forgot-password"
-                  element={<ForgotPasswordForm />}
-                />
+                <Route path="forgot-password" element={<ForgotPassword />}>
+                  <Route path="confirm" element={<ForgotPasswordConfirm />} />
+                  <Route index element={<ForgotPasswordForm />} />
+                </Route>
                 <Route path="address" element={<AddressSearch />}>
                   <Route path="residents" element={<ResidentList />} />
                 </Route>
