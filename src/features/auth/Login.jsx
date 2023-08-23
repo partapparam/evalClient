@@ -85,7 +85,7 @@ export const LoginForm = () => {
                 />
               </div>
               <div className="font-light text-gray-400 text-right hover:text-gray-900 transition text-sm py-2">
-                <Link to="/forgot-password">Forgot password?</Link>
+                <Link to="/forgotPassword">Forgot password?</Link>
               </div>
             </div>
 

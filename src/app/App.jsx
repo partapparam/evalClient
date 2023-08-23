@@ -17,6 +17,7 @@ import { ResidentForm } from "../features/residents/ResidentForm"
 import { ForgotPasswordForm } from "../features/auth/ForgotPasswordForm"
 import { ForgotPassword } from "../features/auth/ForgotPassword"
 import { ForgotPasswordConfirm } from "../features/auth/ForgotPasswordConfirm"
+import { UpdatePasswordForm } from "../features/auth/UpdatePasswordForm"
 
 function App() {
   return (
@@ -28,8 +29,9 @@ function App() {
               <Route path="/" element={<LandingPage />}>
                 <Route path="login" element={<LoginForm />} />
                 <Route path="signup" element={<SignupForm />} />
-                <Route path="forgot-password" element={<ForgotPassword />}>
+                <Route path="forgotPassword" element={<ForgotPassword />}>
                   <Route path="confirm" element={<ForgotPasswordConfirm />} />
+                  <Route path="update" element={<UpdatePasswordForm />} />
                   <Route index element={<ForgotPasswordForm />} />
                 </Route>
                 <Route path="address" element={<AddressSearch />}>
