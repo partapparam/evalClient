@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { loginUser, signupUser } from "./auth.thunks"
+import {
+  confirmTokenThunk,
+  forgotPasswordThunk,
+  loginUser,
+  signupUser,
+  updatePasswordThunk,
+} from "./auth.thunks"
 
 const initialState = { user: null, state: "idle", error: null }
 
@@ -13,7 +19,7 @@ const authSlice = createSlice({
         state.status = "loading"
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = "active"
+        state.status = "idle"
         state.user = action.payload
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -27,6 +33,33 @@ const authSlice = createSlice({
       .addCase(signupUser.rejected, (state, action) => {
         state.status = "failed"
         console.log("the request failed", action.error.message)
+      })
+      .addCase(forgotPasswordThunk.pending, (state, action) => {
+        state.status = "loading"
+      })
+      .addCase(forgotPasswordThunk.fulfilled, (state, action) => {
+        state.status = "idle"
+      })
+      .addCase(forgotPasswordThunk.rejected, (state, action) => {
+        state.status = "failed"
+      })
+      .addCase(confirmTokenThunk.pending, (state, action) => {
+        state.status = "loading"
+      })
+      .addCase(confirmTokenThunk.fulfilled, (state, action) => {
+        state.status = "idle"
+      })
+      .addCase(confirmTokenThunk.rejected, (state, action) => {
+        state.status = "failed"
+      })
+      .addCase(updatePasswordThunk.pending, (state, action) => {
+        state.status = "loading"
+      })
+      .addCase(updatePasswordThunk.fulfilled, (state, action) => {
+        state.status = "idle"
+      })
+      .addCase(updatePasswordThunk.rejected, (state, action) => {
+        state.status = "failed"
       })
   },
 })

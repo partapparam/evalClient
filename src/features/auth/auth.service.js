@@ -1,25 +1,16 @@
 import axiosClient from "../../common/axios/axios.instance"
 
 const login = async (body) => {
-  // try {
   const response = axiosClient.post("auth/login", body)
   return response
-  // } catch (error) {
-  //   console.log("Auth Login error", error)
-  //   throw new Error("Login service failed")
-  // }
 }
 
 const signup = async (body) => {
   console.log(body)
-  // try {
+
   const response = axiosClient.post("auth/signup", body)
 
   return response
-  // } catch (error) {
-  //   console.log("Auth Signup error", error)
-  //   throw new Error("Signup service failed")
-  // }
 }
 
 // Update User Profile and Profile Image
@@ -31,13 +22,27 @@ const profilePhoto = async (body) => {
 }
 
 const forgotPassword = async (body) => {
-  try {
-    const response = await axiosClient.post("auth/password/forgot", body)
-    return response
-  } catch (error) {
-    console.log("Auth Signup error", error)
-    throw new Error("Signup service failed")
-  }
+  const response = await axiosClient.post("auth/forgotPassword", body)
+  return response
 }
 
-export { login, signup, profilePhoto, forgotPassword }
+const confirmToken = async (token) => {
+  const response = await axiosClient.get("auth/confirm/token", {
+    params: { token },
+  })
+  return response
+}
+
+const updatePassword = async (body) => {
+  const response = axiosClient.put("auth/update/passwordByEmail", body)
+  return response
+}
+
+export {
+  login,
+  signup,
+  profilePhoto,
+  forgotPassword,
+  confirmToken,
+  updatePassword,
+}
