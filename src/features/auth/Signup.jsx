@@ -204,7 +204,7 @@ export const SignupForm = () => {
                   {...register("confirmPassword", {
                     required: true,
                     validate: (value) => {
-                      if (watch("password") != value) {
+                      if (watch("password") !== value) {
                         return "Password do not match"
                       }
                     },

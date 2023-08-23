@@ -1,20 +1,35 @@
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { forgotPassword } from "./auth.service"
 import { useNotification } from "../../hooks/useNotification"
+import { forgotPasswordThunk } from "./auth.thunks"
+import { useDispatch } from "react-redux"
+import { useForm } from "react-hook-form"
 
 export const ForgotPasswordForm = () => {
-  const [email, setEmail] = useState("")
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const notification = useNotification()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+    },
+  })
 
-  const handleSubmit = async (event) => {
+  const formSubmit = async (data, event) => {
     event.preventDefault()
     try {
-      const response = await forgotPassword(email)
+      const response = await dispatch(forgotPasswordThunk(data)).unwrap()
       console.log(response)
+      notification.open("Reset email sent.", "success")
+      navigate("form/success")
     } catch (error) {
+      console.log("this error is called", error)
       notification.open(
         `Failed to reset your password: ${error.message}`,
         "error"
@@ -25,8 +40,7 @@ export const ForgotPasswordForm = () => {
   }
 
   const handleCancel = () => {
-    setEmail("")
-    navigate("/")
+    reset()
   }
 
   return (
@@ -39,21 +53,30 @@ export const ForgotPasswordForm = () => {
             </h2>
             <p className="text-center">Enter your email</p>
           </div>
-          <form className="mt-8 space-y-6 text-left" onSubmit={handleSubmit}>
+          <form
+            className="mt-8 space-y-6 text-left"
+            onSubmit={handleSubmit(formSubmit)}
+          >
             <div className="-space-y-px rounded-md shadow-sm">
               <label htmlFor="email" className="sr-only">
                 Enter your email
               </label>
               <input
-                onChange={(event) => setEmail(event.target.value)}
+                {...register("email", {
+                  required: "Please enter your email.",
+                })}
                 id="email"
                 required
                 name="email"
                 type="email"
-                value={email || ""}
                 className="relative block w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 px-3 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600"
                 placeholder="Email"
               />
+              {errors.email?.type === "required" && (
+                <p className="form-input-error text-red-500" role="alert">
+                  {errors.email?.message}
+                </p>
+              )}
             </div>
             <div className="flex justify-end">
               <button type="button" className="btn-secondary m-2">

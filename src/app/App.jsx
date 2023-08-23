@@ -30,8 +30,14 @@ function App() {
                 <Route path="login" element={<LoginForm />} />
                 <Route path="signup" element={<SignupForm />} />
                 <Route path="forgotPassword" element={<ForgotPassword />}>
-                  <Route path="confirm" element={<ForgotPasswordConfirm />} />
-                  <Route path="update" element={<UpdatePasswordForm />} />
+                  <Route
+                    path="form/success"
+                    element={<ForgotPasswordConfirm />}
+                  />
+                  <Route
+                    path="reset/password"
+                    element={<UpdatePasswordForm />}
+                  />
                   <Route index element={<ForgotPasswordForm />} />
                 </Route>
                 <Route path="address" element={<AddressSearch />}>

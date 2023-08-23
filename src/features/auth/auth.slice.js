@@ -32,7 +32,6 @@ const authSlice = createSlice({
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.status = "failed"
-        console.log("the request failed", action.error.message)
       })
       .addCase(forgotPasswordThunk.pending, (state, action) => {
         state.status = "loading"
@@ -47,6 +46,9 @@ const authSlice = createSlice({
         state.status = "loading"
       })
       .addCase(confirmTokenThunk.fulfilled, (state, action) => {
+        const user = { email: action.payload }
+        state.user = user
+        console.log(state.user)
         state.status = "idle"
       })
       .addCase(confirmTokenThunk.rejected, (state, action) => {

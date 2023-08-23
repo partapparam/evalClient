@@ -25,7 +25,7 @@ export const signupUser = createAsyncThunk("auth/signupUser", async (data) => {
   try {
     const response = await signup(data)
     if (response.data.message === "error") {
-      throw new Error(response.data)
+      if (response.data.message === "error") throw Error(response.data.data)
     }
     return response.data
   } catch (error) {
@@ -37,9 +37,8 @@ export const signupUser = createAsyncThunk("auth/signupUser", async (data) => {
 export const updateImage = createAsyncThunk("auth/update", async (data) => {
   try {
     const response = await profilePhoto(data)
-    if (response.data.message === "error") {
-      throw new Error(response.data)
-    }
+    if (response.data.message === "error") throw Error(response.data.data)
+
     return response.data.data
   } catch (error) {
     console.log("update profile Error", error)
@@ -52,11 +51,11 @@ export const forgotPasswordThunk = createAsyncThunk(
   async (data) => {
     try {
       const response = await forgotPassword(data)
-      if (response.data.message === "error") throw Error(response.data)
+      if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
-      console.log("Forgot Password Thunk error", error)
-      throw Error(error.data)
+      console.log("Forgot Password Thunk error", error.message)
+      throw Error(error.message)
     }
   }
 )
@@ -66,11 +65,11 @@ export const confirmTokenThunk = createAsyncThunk(
   async (data) => {
     try {
       const response = await confirmToken(data)
-      if (response.data.message === "error") throw Error(response.data)
+      if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
       console.log("Confirm Token Thunk Error", error)
-      throw Error(error.data)
+      throw Error(error.message)
     }
   }
 )
@@ -80,11 +79,11 @@ export const updatePasswordThunk = createAsyncThunk(
   async (data) => {
     try {
       const response = await confirmToken(data)
-      if (response.data.message === "error") throw Error(response.data)
+      if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
       console.log("Update Password Thunk error", error)
-      throw Error(error.data)
+      throw Error(error.message)
     }
   }
 )

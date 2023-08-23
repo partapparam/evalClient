@@ -1,13 +1,35 @@
 import React from "react"
 import { useForm } from "react-hook-form"
+import { useRef, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { confirmTokenThunk, updatePasswordThunk } from "./auth.thunks"
+import { async } from "radar-sdk-js"
+import { useSearchParams } from "react-router-dom"
 
 export const UpdatePasswordForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
     reset,
     formState: { errors },
   } = useForm()
+  const password = useRef({})
+  const dispatch = useDispatch()
+  const forgotPasswordStatus = useSelector((state) => state.auth.status)
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    try {
+      const token = searchParams.get("token")
+      console.log(token)
+      dispatch(confirmTokenThunk(token))
+    } catch (error) {
+      console.log(error.message)
+    }
+  }, [])
+
+  password.current = watch("password", "")
 
   const onSubmit = async (data, e) => {}
 
@@ -52,7 +74,7 @@ export const UpdatePasswordForm = () => {
               {...register("confirmPassword", {
                 required: true,
                 validate: (value) => {
-                  if (watch("password") != value) {
+                  if (watch("password") !== value) {
                     return "Password do not match"
                   }
                 },
