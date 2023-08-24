@@ -78,7 +78,7 @@ export const updatePasswordThunk = createAsyncThunk(
   "auth/updatePassword",
   async (data) => {
     try {
-      const response = await confirmToken(data)
+      const response = await updatePassword(data)
       if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {

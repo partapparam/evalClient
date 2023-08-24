@@ -34,10 +34,7 @@ function App() {
                     path="form/success"
                     element={<ForgotPasswordConfirm />}
                   />
-                  <Route
-                    path="reset/password"
-                    element={<UpdatePasswordForm />}
-                  />
+                  <Route path="reset" element={<UpdatePasswordForm />} />
                   <Route index element={<ForgotPasswordForm />} />
                 </Route>
                 <Route path="address" element={<AddressSearch />}>

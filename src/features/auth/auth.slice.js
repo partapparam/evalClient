@@ -46,9 +46,7 @@ const authSlice = createSlice({
         state.status = "loading"
       })
       .addCase(confirmTokenThunk.fulfilled, (state, action) => {
-        const user = { email: action.payload }
-        state.user = user
-        console.log(state.user)
+        state.user = action.payload
         state.status = "idle"
       })
       .addCase(confirmTokenThunk.rejected, (state, action) => {
