@@ -103,7 +103,7 @@ export const UpdatePasswordForm = () => {
                   id="password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
-                {errors.password && (
+                {errors.password?.type === "required" && (
                   <p className="text-red-500">{errors.password?.message}</p>
                 )}
               </div>
@@ -130,7 +130,7 @@ export const UpdatePasswordForm = () => {
                   id="confirmPassword"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
-                {errors.confirmPassword && (
+                {errors.confirmPassword?.type === "required" && (
                   <p className="text-red-500">
                     {errors.confirmPassword?.message}
                   </p>

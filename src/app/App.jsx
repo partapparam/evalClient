@@ -18,6 +18,7 @@ import { ForgotPasswordForm } from "../features/auth/ForgotPasswordForm"
 import { ForgotPassword } from "../features/auth/ForgotPassword"
 import { ForgotPasswordConfirm } from "../features/auth/ForgotPasswordConfirm"
 import { UpdatePasswordForm } from "../features/auth/UpdatePasswordForm"
+import { FAQ } from "../features/FAQ/FAQ"
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
                     </RequiredAuth>
                   }
                 />
+                <Route path="faq" element={<FAQ />} />
 
                 <Route index element={<Home />} />
               </Route>
