@@ -6,9 +6,9 @@ import { Footer } from "./components/Footer"
 export const LandingPage = () => {
   return (
     <>
-      <div className="flex flex-col relative h-full">
+      <div className="flex flex-col relative">
         <NavBar />
-        <div className="mb-16">
+        <div>
           <Outlet />
         </div>
         {/* <Outlet /> */}

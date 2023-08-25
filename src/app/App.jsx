@@ -25,7 +25,7 @@ function App() {
     <UserProvider>
       <NotificationProvider>
         <BrowserRouter>
-          <div className="App">
+          <div className="h-screen">
             <Routes>
               <Route path="/" element={<LandingPage />}>
                 <Route path="login" element={<LoginForm />} />

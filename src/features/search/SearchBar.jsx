@@ -110,7 +110,7 @@ export const Search = () => {
         className="relative"
       >
         <input
-          className="w-full !px-6 py-3 rounded-[25px] outline outline-4 text-md  focus:shadow-sm outline-violet-300 focus:rounded-b-sm  focus:outline focus:outline-violet-500 duration-400"
+          className="w-full !px-6 py-3 rounded-sm border-4 text-md  focus:shadow-sm border-violet-300 focus:border-violet-500 duration-400 transition"
           type="text"
           placeholder="Type in an address to search..."
           value={search}
@@ -118,7 +118,7 @@ export const Search = () => {
         />
         {/* search results container */}
         {showResults && results && results.length !== 0 && (
-          <div className="absolute text-md  text-left w-full p-2 bg-white shadow-sm rounded-bl rounded-br max-h-56 overflow-y-auto">
+          <div className="absolute text-md  text-left w-full p-2 bg-white shadow-sm rounded-bl rounded-br max-h-56 overflow-y-auto border-x-2 border-b-2">
             {results &&
               results.map((address, index) => {
                 return (
