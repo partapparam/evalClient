@@ -23,12 +23,12 @@ export const FAQ = () => {
                   />
                 </Disclosure.Button>
                 <Transition
-                  enter="transition duration-300 ease-out"
-                  enterFrom="transform scale-95 opacity-0"
-                  enterTo="transform scale-100 opacity-100"
-                  leave="transition duration-250 ease-out"
-                  leaveFrom="transform scale-100 opacity-100"
-                  leaveTo="transform scale-95 opacity-0"
+                  enter="transition duration-400 ease-out"
+                  enterFrom="transform  opacity-0"
+                  enterTo="transform  opacity-100"
+                  leave="transition duration-350 ease-out"
+                  leaveFrom="transform opacity-100"
+                  leaveTo="transform opacity-0"
                 >
                   <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                     {faq.content}

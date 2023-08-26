@@ -11,7 +11,7 @@ export const Home = () => {
         <div className="text-center">
           <img
             src={process.env.REACT_APP_LOGO_URL}
-            className="w-48 h-48"
+            className="w-24 h-24 md:w-48 md:h-48"
             alt="logo"
           />
         </div>
