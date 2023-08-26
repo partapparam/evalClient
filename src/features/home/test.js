@@ -1,31 +1,17 @@
-import React from "react"
-import { Search } from "../search/SearchBar"
-
-export const Home = () => {
-  return (
-    <div className="h-screen">
-      <div
-        className="bg-gradient-to-b from-purple-800 via-purple-500 to-orange-300
-       grid grid-rows-3 w-full h-full grid-cols-12"
-      >
-        <div className="rows-span-1 self-end justify-self-center col-span-12">
-          <img
-            src={process.env.REACT_APP_LOGO_URL}
-            className="w-48 h-48"
-            alt="logo"
-          />
-        </div>
-        <div className="rows-span-1 min-w-3/4	col-start-1 col-end-13 md:col-start-3 md:col-end-11 lg:col-start-4 lg:col-end-10">
-          <Search />
-        </div>
-        <div className="rows-span-1 min-w-3/4	col-start-1 col-end-13 md:col-start-3 md:col-end-11 lg:col-start-4 lg:col-end-10">
-          <div className="text-center">
-            <p className="mt-2 px-5 text-3xl leading-8 font-extrabold tracking-tight text-gray-800 sm:text-4xl">
-              A better way to choose your clients
-            </p>
-          </div>
+;<dl className="">
+  {FAQList.map((faq) => (
+    <div className="flex space-y-10 md:space-y-0 m-5 p-5 ">
+      <div className="flex-shrink-0">
+        <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <ClipboardIcon className="h-6 w-6 text-blue-800" />
         </div>
       </div>
+      <div className="ml-4">
+        <dt className="text-xl leading-6 font-bold text-gray-900">
+          {faq.title}
+        </dt>
+        <dd className="mt-2 text-base text-gray-500">{faq.content}</dd>
+      </div>
     </div>
-  )
-}
+  ))}
+</dl>

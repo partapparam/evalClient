@@ -1,9 +1,8 @@
-import React, { Fragment, useContext } from "react"
-import { Disclosure } from "@headlessui/react"
+import React, { useContext } from "react"
+import { Disclosure, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext"
-import { LoginForm } from "../../features/auth/Login"
 
 export const NavBar = () => {
   const { isLoggedIn, logout } = useContext(UserContext)
@@ -32,7 +31,7 @@ export const NavBar = () => {
               </div>
               <div className="flex flex-1 items-baseline justify-center sm:items-end sm:justify-between">
                 <div className="flex flex-shrink-0 items-center">
-                  <Disclosure.Button as={Link} to="/">
+                  <Link to="/">
                     <img
                       className="inline h-12 w-auto lg:hidden"
                       src={process.env.REACT_APP_LOGO_URL}
@@ -41,7 +40,7 @@ export const NavBar = () => {
                     <span className="text-yellow-400 font-light inline text-xs lg:hidden">
                       beta
                     </span>
-                  </Disclosure.Button>
+                  </Link>
                   <Link to="/">
                     <img
                       className="hidden h-12 w-auto lg:inline"
@@ -55,6 +54,11 @@ export const NavBar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                    <Link to="/faq">
+                      <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
+                        FAQ
+                      </p>
+                    </Link>
                     {!isLoggedIn && (
                       <>
                         <Link to="/login">
@@ -90,43 +94,56 @@ export const NavBar = () => {
               </div>
             </div>
           </div>
+          <Transition
+            enter="transition duration-300 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-250 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+          >
+            <Disclosure.Panel className="sm:hidden z-50">
+              <div className="space-y-1 px-2 pb-3 pt-2">
+                {!isLoggedIn && (
+                  <>
+                    <Disclosure.Button as={Link} to="/login">
+                      <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
+                        Login
+                      </p>
+                    </Disclosure.Button>
+                    <Disclosure.Button as={Link} to="/signup">
+                      <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
+                        Signup
+                      </p>
+                    </Disclosure.Button>
+                  </>
+                )}
+                {isLoggedIn && (
+                  <>
+                    <Disclosure.Button as={Link} to="/profile">
+                      <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
+                        Profile
+                      </p>
+                    </Disclosure.Button>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {!isLoggedIn && (
-                <>
-                  <Disclosure.Button as={Link} to="/login">
-                    <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
-                      Login
-                    </p>
-                  </Disclosure.Button>
-                  <Disclosure.Button as={Link} to="/signup">
-                    <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
-                      Signup
-                    </p>
-                  </Disclosure.Button>
-                </>
-              )}
-              {isLoggedIn && (
-                <>
-                  <Disclosure.Button as={Link} to="/profile">
-                    <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
-                      Profile
-                    </p>
-                  </Disclosure.Button>
-
-                  <Disclosure.Button as={Link} to="/">
-                    <p
-                      className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </p>
-                  </Disclosure.Button>
-                </>
-              )}
-            </div>
-          </Disclosure.Panel>
+                    <Disclosure.Button as={Link} to="/">
+                      <p
+                        className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </p>
+                    </Disclosure.Button>
+                  </>
+                )}
+                <Disclosure.Button as={Link} to="/faq">
+                  <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
+                    FAQ
+                  </p>
+                </Disclosure.Button>
+              </div>
+            </Disclosure.Panel>
+          </Transition>
         </>
       )}
     </Disclosure>

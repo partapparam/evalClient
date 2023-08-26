@@ -1,27 +1,44 @@
 import React from "react"
 import { FAQList } from "./faqList"
-import { ClipboardIcon } from "@heroicons/react/24/solid"
+import { ChevronUpIcon } from "@heroicons/react/24/solid"
+import { Disclosure, Transition } from "@headlessui/react"
 
 export const FAQ = () => {
   return (
-    <div className="mt-10">
-      <dl className="">
+    <div className="w-full px-4 pt-16">
+      <p className="text-3xl sm:text-4xl font-extrabold p-5 text-center">
+        Frequently Asked Questions
+      </p>
+      <div className=" mx-auto w-full max-w-md rounded-2xl bg-white p-3">
         {FAQList.map((faq) => (
-          <div className="flex space-y-10 md:space-y-0 m-5 p-5 ">
-            <div className="flex-shrink-0">
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                <ClipboardIcon className="h-6 w-6 text-blue-800" />
+          <Disclosure>
+            {({ open }) => (
+              <div className="m-3">
+                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-5 py-3 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                  <span>{faq.title}</span>
+                  <ChevronUpIcon
+                    className={`${
+                      open ? "rotate-180 transform" : ""
+                    } h-5 w-5 text-purple-800`}
+                  />
+                </Disclosure.Button>
+                <Transition
+                  enter="transition duration-300 ease-out"
+                  enterFrom="transform scale-95 opacity-0"
+                  enterTo="transform scale-100 opacity-100"
+                  leave="transition duration-250 ease-out"
+                  leaveFrom="transform scale-100 opacity-100"
+                  leaveTo="transform scale-95 opacity-0"
+                >
+                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                    {faq.content}
+                  </Disclosure.Panel>
+                </Transition>
               </div>
-            </div>
-            <div className="ml-4">
-              <dt className="text-xl leading-6 font-bold text-gray-900">
-                {faq.title}
-              </dt>
-              <dd className="mt-2 text-base text-gray-500">{faq.content}</dd>
-            </div>
-          </div>
+            )}
+          </Disclosure>
         ))}
-      </dl>
+      </div>
     </div>
   )
 }
