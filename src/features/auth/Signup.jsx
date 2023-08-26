@@ -13,9 +13,9 @@ export const SignupForm = () => {
   const navigate = useNavigate()
   const notification = useNotification()
   const [addRequestStatus, setAddRequestStatus] = useState("idle")
-  const { isLoggedIn, login } = useContext(UserContext)
+  const [confirmTerms, setConfirmTerms] = useState(false)
+  const { login } = useContext(UserContext)
   const password = useRef({})
-  // TODO errors and validation
   const {
     register,
     handleSubmit,
@@ -29,6 +29,7 @@ export const SignupForm = () => {
       firstName: "",
       lastName: "",
       jobTitle: "",
+      industry: "",
       confirmPassword: "",
     },
   })
@@ -50,7 +51,6 @@ export const SignupForm = () => {
     } finally {
       reset()
       setAddRequestStatus("idle")
-      console.log("changing the status back after request for signup")
     }
   }
 
@@ -60,7 +60,7 @@ export const SignupForm = () => {
         <div className="w-full max-w-md space-y-8">
           <div>
             <p className="mt-3 text-center text-3xl font-extrabold text-gray-900">
-              Sign up
+              Sign up for Eval
             </p>
           </div>
           <form className="mt-6 space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -119,7 +119,7 @@ export const SignupForm = () => {
             </div>
             <div className="sm:col-span-3">
               <label
-                htmlFor="apt"
+                htmlFor="jobTitle"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Job Title
@@ -135,9 +135,39 @@ export const SignupForm = () => {
                   placeholder="Salesperson, Technician, Installer etc."
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                 />
+                <p className="text-xs text-gray-400 py-1">
+                  * Kept confidential
+                </p>
                 {errors.jobTitle?.type === "required" && (
                   <p className="text-red-500" role="alert">
                     {errors.jobTitle?.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="sm:col-span-3">
+              <label
+                htmlFor="industry"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Industry
+              </label>
+              <div className="mt-2">
+                <input
+                  {...register("industry", {
+                    required: "Please enter your job title",
+                  })}
+                  type="text"
+                  id="industry"
+                  placeholder="Select"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
+                />
+                <p className="text-xs text-gray-400 py-1">
+                  * Kept confidential
+                </p>
+                {errors.industry?.type === "required" && (
+                  <p className="text-red-500" role="alert">
+                    {errors.industry?.message}
                   </p>
                 )}
               </div>
@@ -221,15 +251,26 @@ export const SignupForm = () => {
                 )}
               </div>
             </div>
+            <div>
+              <input
+                type="checkbox"
+                onClick={() => setConfirmTerms(!confirmTerms)}
+              />
+              <label>
+                You have read and accepted the Eval Privacy Policy and Terms of
+                Use
+              </label>
+            </div>
 
             <div>
               <input
+                disabled={!confirmTerms}
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-emerald-500 hover:bg-emerald-600 py-2 px-3 text-sm font-semibold text-white "
+                className="group relative flex w-full justify-center rounded-md bg-emerald-500 hover:bg-emerald-600 py-2 px-3 text-sm font-semibold text-white disabled:opacity-80"
               />
             </div>
-            <div className="font-light text-gray-400 text-center hover:text-gray-900 transition underline">
-              <Link to="/login">Log in to an exisiting account</Link>
+            <div className="font-light text-gray-400 text-center hover:text-gray-900 transition">
+              <Link to="/login">Already a member? Login</Link>
             </div>
           </form>
         </div>
