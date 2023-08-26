@@ -5,25 +5,23 @@ export const Home = () => {
   return (
     <div className="h-screen">
       <div
-        className="bg-gradient-to-b from-purple-800 via-purple-500 to-white
-       grid grid-rows-3 w-full h-full grid-cols-12"
+        className="bg-gradient-to-b from-purple-800 via-purple-500 to-orange-300
+       flex flex-col w-full h-full justify-center items-center"
       >
-        <div className="rows-span-1 self-end justify-self-center col-span-12">
+        <div className="text-center">
           <img
             src={process.env.REACT_APP_LOGO_URL}
             className="w-48 h-48"
             alt="logo"
           />
         </div>
-        <div className="rows-span-1 min-w-3/4	col-start-1 col-end-13 md:col-start-3 md:col-end-11 lg:col-start-4 lg:col-end-10">
-          <Search />
+        <div className="text-center">
+          <p className="px-8 py-10 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+            A better way to choose your clients
+          </p>
         </div>
-        <div className="rows-span-1 min-w-3/4	col-start-1 col-end-13 md:col-start-3 md:col-end-11 lg:col-start-4 lg:col-end-10">
-          <div className="text-center">
-            <p className="mt-2 px-5 text-3xl leading-8 font-extrabold tracking-tight text-gray-800 sm:text-4xl">
-              A better way to choose your clients
-            </p>
-          </div>
+        <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 py-3">
+          <Search />
         </div>
       </div>
     </div>
