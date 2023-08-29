@@ -16,8 +16,8 @@ export const Home = () => {
           />
         </div>
         <div className="text-center">
-          <p className="px-8 py-10 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-            A better way to choose your clients
+          <p className="px-8 py-5 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+            The App for Trades People to rate Homeowners
           </p>
         </div>
         <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 py-3">

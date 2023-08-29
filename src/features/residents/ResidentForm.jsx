@@ -23,7 +23,7 @@ export const ResidentForm = () => {
       firstName: "",
       lastName: "",
       type: "home",
-      apt: "",
+      unit: "",
     },
   })
   // TODO handle on submit with resident slice
@@ -131,7 +131,7 @@ export const ResidentForm = () => {
                   className="block appearance-none w-full border border-gray-400 text-gray-800 py-3 px-4 pr-8 mr-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 >
                   <option value="home">Home</option>
-                  <option value="apartment">Apartment</option>
+                  <option value="multiFamily">Multi-Family</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -148,14 +148,14 @@ export const ResidentForm = () => {
                   htmlFor="apt"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Apartment Number
+                  Unit #
                 </label>
                 <div className="mt-2">
                   <input
-                    {...register("apt")}
+                    {...register("unit")}
                     type="text"
-                    name="apt"
-                    id="apt"
+                    name="unit"
+                    id="unit"
                     placeholder="#"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -175,8 +175,6 @@ export const ResidentForm = () => {
           className="text-sm  font-semibold leading-6 text-red-600"
           onClick={handleReset}
         >
-          {/* TODO handle cancel button 
-          clear the form and go back to resident page*/}
           Cancel
         </button>
         <input
