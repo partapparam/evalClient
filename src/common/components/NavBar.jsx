@@ -69,7 +69,7 @@ export const NavBar = () => {
 
                         <Link to="/signup">
                           <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
-                            Signup
+                            Sign up
                           </p>
                         </Link>
                       </>
@@ -113,7 +113,7 @@ export const NavBar = () => {
                     </Disclosure.Button>
                     <Disclosure.Button as={Link} to="/signup">
                       <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
-                        Signup
+                        Sign up
                       </p>
                     </Disclosure.Button>
                   </>
