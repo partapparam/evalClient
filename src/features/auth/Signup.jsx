@@ -267,7 +267,7 @@ export const SignupForm = () => {
               <input
                 disabled={!confirmTerms}
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-emerald-500 hover:bg-emerald-600 py-2 px-3 text-sm font-semibold text-white disabled:opacity-80"
+                className="group relative flex w-full justify-center rounded-md bg-emerald-500 hover:bg-emerald-600 py-2 px-3 text-sm font-semibold text-white disabled:opacity-80 disabled:cursor-not-allowed"
               />
             </div>
             <div className="font-light text-gray-400 text-center hover:text-gray-900 transition">
