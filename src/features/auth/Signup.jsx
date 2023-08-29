@@ -7,6 +7,7 @@ import { UserContext } from "../../providers/UserContext"
 import { useNotification } from "../../hooks/useNotification"
 import { Link } from "react-router-dom"
 import { signupUser } from "./auth.thunks"
+import { INDUSTRIES } from "../../common/constants"
 
 export const SignupForm = () => {
   const dispatch = useDispatch()
@@ -153,18 +154,17 @@ export const SignupForm = () => {
                 Industry
               </label>
               <div className="mt-2">
-                <input
-                  {...register("industry", {
-                    required: "Please enter your job title",
-                  })}
-                  type="text"
-                  id="industry"
+                <select
+                  {...register("industry")}
+                  className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
                   placeholder="Select"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  placeholder:text-gray-400 outline-2 outline outline-gray-300 focus:outline-blue-600 hover:outline-blue-600 sm:text-sm sm:leading-6 transition"
-                />
-                <p className="text-xs text-gray-400 py-1">
-                  * Kept confidential
-                </p>
+                >
+                  {INDUSTRIES.map((industry) => (
+                    <option key={industry} value={industry}>
+                      {industry}
+                    </option>
+                  ))}
+                </select>
                 {errors.industry?.type === "required" && (
                   <p className="text-red-500" role="alert">
                     {errors.industry?.message}
@@ -255,10 +255,11 @@ export const SignupForm = () => {
               <input
                 type="checkbox"
                 onClick={() => setConfirmTerms(!confirmTerms)}
+                className="mr-2"
               />
               <label>
-                You have read and accepted the Eval Privacy Policy and Terms of
-                Use
+                I have read and accepted the Eval Privacy Policy and Terms of
+                Use.
               </label>
             </div>
 
