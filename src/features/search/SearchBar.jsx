@@ -42,15 +42,16 @@ export const Search = () => {
 
   const handleSelection = (selectedIndex) => {
     const selectedItem = results[selectedIndex]
+    const address = selectedItem.formattedAddress
     if (!selectedItem) return resetSearchComplete()
     setSearch("")
     resetSearchComplete()
     dispatch(resetResidents())
-    dispatch(addAddress(selectedItem.formattedAddress))
+    dispatch(addAddress(address))
     if (location.pathname === "/") {
-      navigate("address/residents")
+      navigate(`address/residents?address=${address}`)
     } else {
-      navigate("residents")
+      navigate(`residents?address=${address}`)
     }
   }
 
@@ -67,32 +68,6 @@ export const Search = () => {
       // block: "center",
     })
   }, [focusedIndex])
-
-  // const handleKeyDown = (e) => {
-  //   const { key } = e
-  //   let nextIndexCount = 0
-
-  //   // move down
-  //   if (key === "ArrowDown")
-  //     nextIndexCount = (focusedIndex + 1) % results.length
-
-  //   // move up
-  //   if (key === "ArrowUp")
-  //     nextIndexCount = (focusedIndex + results.length - 1) % results.length
-
-  //   // hide search results
-  //   if (key === "Escape") {
-  //     resetSearchComplete()
-  //   }
-
-  //   // select the current item
-  //   if (key === "Enter") {
-  //     e.preventDefault()
-  //     handleSelection(focusedIndex)
-  //   }
-
-  //   setFocusedIndex(nextIndexCount)
-  // }
 
   const onChange = (e) => {
     const query = e.target.value

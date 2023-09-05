@@ -7,12 +7,16 @@ import { useNotification } from "../../hooks/useNotification"
 import { selectAddressSelector } from "../addresses/address.selectors"
 import { Link } from "react-router-dom"
 import { NoAddress } from "../addresses/NoAddress"
+import { useSearchParams } from "react-router-dom"
 
 export const ResidentForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const searchAddress = searchParams.get("address")
   const notification = useNotification()
   const address = useSelector(selectAddressSelector)
+
   const {
     register,
     handleSubmit,
@@ -29,7 +33,7 @@ export const ResidentForm = () => {
   // TODO handle on submit with resident slice
   const onSubmit = async (data) => {
     // Add address to form.
-    data.address = address
+    data.address = searchAddress
     try {
       const resident = await dispatch(postResident(data)).unwrap()
       notification.open(
@@ -45,7 +49,7 @@ export const ResidentForm = () => {
   }
   const handleReset = () => {
     reset()
-    navigate("/address/residents")
+    navigate(`/address/residents?address=${searchAddress}`)
   }
 
   const FormView = (
@@ -62,7 +66,7 @@ export const ResidentForm = () => {
           <div className="mt-3 grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
-                htmlFor="visitType"
+                htmlFor="firstName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 First Name
@@ -186,7 +190,7 @@ export const ResidentForm = () => {
   )
   return (
     <>
-      {address ? (
+      {searchAddress ? (
         FormView
       ) : (
         <div className="text-center">

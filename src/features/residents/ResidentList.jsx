@@ -12,6 +12,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid"
 import { Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 import { UserContext } from "../../providers/UserContext"
+import { useSearchParams } from "react-router-dom"
 
 export const ResidentList = () => {
   const dispatch = useDispatch()
@@ -21,16 +22,19 @@ export const ResidentList = () => {
   const location = useLocation()
   const residents = useSelector(selectAllResidentsSelector)
   const address = useSelector(selectAddressSelector)
+  const [searchParams] = useSearchParams()
+  const searchAddress = searchParams.get("address")
+  console.log("this is the serach = ", searchAddress)
 
   useEffect(() => {
     if (residentStatus === "idle") {
       try {
-        dispatch(fetchResidents(address))
+        dispatch(fetchResidents(searchAddress))
       } catch (error) {
         console.log("failed to load residents", error.message)
       }
     }
-  }, [dispatch, address, residentStatus])
+  }, [dispatch, searchAddress, residentStatus])
 
   const residentView = residents.map((r) => (
     <div key={r.residentId}>
@@ -111,7 +115,7 @@ export const ResidentList = () => {
         <div className="flex flex-row justify-between items-center px-3 py-6">
           <p className="font-extrabold text-3xl sm:text-4xl">Residents</p>
           {isLoggedIn ? (
-            <Link to="../../add/resident">
+            <Link to={`../../add/resident?address=${searchAddress}`}>
               <PlusCircleIcon className="text-amber-500 w-12 h-12" />
             </Link>
           ) : (

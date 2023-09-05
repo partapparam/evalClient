@@ -30,6 +30,9 @@ export const ResidentDetail = () => {
             {resident && resident.firstName.slice(0, 1)}.{" "}
             {resident && resident.lastName}
           </h1>
+          <p className="text-purple-700">
+            <Link to={".."}>{resident.address}</Link>
+          </p>
         </div>
         <div className="basis-1/4 flex justify-end">
           <button onClick={openModal}>
