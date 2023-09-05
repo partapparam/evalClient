@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectResidentByIdSelector } from "./residents.selectors"
 import { useParams } from "react-router-dom"
@@ -10,6 +10,9 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid"
 
 export const ResidentDetail = () => {
   const { residentId } = useParams()
+  const [searchParams] = useSearchParams()
+  const id = searchParams.get("resident")
+  const address = searchParams.get("address")
   const resident = useSelector((state) =>
     selectResidentByIdSelector(state, residentId)
   )
@@ -22,6 +25,8 @@ export const ResidentDetail = () => {
     setIsOpen(true)
   }
 
+  console.log("Resident", resident)
+
   const residentDetailView = (
     <>
       <div className="flex flex-row flex-between items-center flex-wrap">
@@ -30,9 +35,6 @@ export const ResidentDetail = () => {
             {resident && resident.firstName.slice(0, 1)}.{" "}
             {resident && resident.lastName}
           </h1>
-          <p className="text-purple-700">
-            <Link to={".."}>{resident.address}</Link>
-          </p>
         </div>
         <div className="basis-1/4 flex justify-end">
           <button onClick={openModal}>
@@ -74,7 +76,9 @@ export const ResidentDetail = () => {
             </Dialog>
           </Transition>
         </div>
-        <div className="basis-full">{resident && resident.residentAddress}</div>
+        <div className="basis-full text-sm text-gray-600 underline hover:text-gray-800 ">
+          <Link to={".."}>{address}</Link>
+        </div>
       </div>
       <div className="grid grid-cols-1 border-t-4 divide-slate-400/2 my-3">
         <Outlet context={residentId} />

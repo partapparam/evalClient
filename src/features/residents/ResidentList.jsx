@@ -38,7 +38,10 @@ export const ResidentList = () => {
 
   const residentView = residents.map((r) => (
     <div key={r.residentId}>
-      <Link to={`/address/residents/${r.residentId}`} className="no-underline">
+      <Link
+        to={`/address/residents/${r.residentId}?address=${searchAddress}&resident=${r.residentId}`}
+        className="no-underline"
+      >
         <ResidentCard resident={r} />
       </Link>
     </div>
