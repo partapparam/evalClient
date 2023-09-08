@@ -19,7 +19,7 @@ export const ReviewCard = ({ review }) => {
               <p className="text-md sm:text-lg font-bold">
                 {review.reviewerFirstName} {review.reviewerLastName}
               </p>
-              <p className="text-xs sm:text-sm text-gray-500">
+              <p className="text-xs sm:text-sm text-gray-500 text-right">
                 {formatDatePublic(review.createdAt)}
               </p>
             </div>

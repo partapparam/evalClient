@@ -8,6 +8,7 @@ import { selectAddressSelector } from "../addresses/address.selectors"
 import { Link } from "react-router-dom"
 import { NoAddress } from "../addresses/NoAddress"
 import { useSearchParams } from "react-router-dom"
+import { replace } from "lodash"
 
 export const ResidentForm = () => {
   const dispatch = useDispatch()
@@ -30,7 +31,6 @@ export const ResidentForm = () => {
       unit: "",
     },
   })
-  // TODO handle on submit with resident slice
   const onSubmit = async (data) => {
     // Add address to form.
     data.address = searchAddress
@@ -40,16 +40,20 @@ export const ResidentForm = () => {
         `${resident.firstName} ${resident.lastName} is now a resident`,
         "success"
       )
-      navigate(`residents/${resident.residentId}`)
+      navigate(
+        `../${resident.residentId}?address=${searchAddress}&resident=${resident.residentId}`,
+        { replace: true }
+      )
     } catch (error) {
       notification.open("Could not create new resident, try again.", "error")
+      navigate(`..?address=${searchAddress}`, { replace: true })
     } finally {
-      handleReset()
+      reset()
     }
   }
   const handleReset = () => {
     reset()
-    navigate(`/address/residents?address=${searchAddress}`)
+    navigate(`..?address=${searchAddress}`, { replace: true })
   }
 
   const FormView = (

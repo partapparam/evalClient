@@ -77,7 +77,7 @@ export const ResidentDetail = () => {
           </Transition>
         </div>
         <div className="basis-full text-sm text-gray-600 underline hover:text-gray-800 ">
-          <Link to={".."}>{address}</Link>
+          <Link to={`..?address=${address}`}>{address}</Link>
         </div>
       </div>
       <div className="grid grid-cols-1 border-t-4 divide-slate-400/2 my-3">

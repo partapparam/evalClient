@@ -5,7 +5,7 @@ import { Home } from "../features/home/Home"
 import { LoginForm } from "../features/auth/Login"
 import { SignupForm } from "../features/auth/Signup"
 import { LandingPage } from "../common/LandingPage"
-import { AddressSearch } from "../features/addresses/AddressResults"
+import { AddressResults } from "../features/addresses/AddressResults"
 import { ResidentList } from "../features/residents/ResidentList"
 import { Profile } from "../features/auth/Profile"
 import { ResidentDetail } from "../features/residents/ResidentDetail"
@@ -19,6 +19,7 @@ import { ForgotPassword } from "../features/auth/ForgotPassword"
 import { ForgotPasswordConfirm } from "../features/auth/ForgotPasswordConfirm"
 import { UpdatePasswordForm } from "../features/auth/UpdatePasswordForm"
 import { FAQ } from "../features/FAQ/FAQ"
+import { AddressDetail } from "../features/addresses/AddressDetail"
 
 function App() {
   return (
@@ -38,34 +39,35 @@ function App() {
                   <Route path="reset" element={<UpdatePasswordForm />} />
                   <Route index element={<ForgotPasswordForm />} />
                 </Route>
-                <Route path="address" element={<AddressSearch />}>
-                  <Route path="residents" element={<ResidentList />} />
-                </Route>
-                <Route
-                  path="add/resident"
-                  element={
-                    <RequiredAuth>
-                      <ResidentForm />
-                    </RequiredAuth>
-                  }
-                />
-                <Route
-                  path="address/residents/:residentId"
-                  element={
-                    <RequiredAuth>
-                      <ResidentDetail />
-                    </RequiredAuth>
-                  }
-                >
+                <Route path="address/residents" element={<AddressDetail />}>
                   <Route
-                    index
+                    path="add"
                     element={
                       <RequiredAuth>
-                        <ReviewsList />
+                        <ResidentForm />
                       </RequiredAuth>
                     }
                   />
+                  <Route
+                    path=":residentId"
+                    element={
+                      <RequiredAuth>
+                        <ResidentDetail />
+                      </RequiredAuth>
+                    }
+                  >
+                    <Route
+                      index
+                      element={
+                        <RequiredAuth>
+                          <ReviewsList />
+                        </RequiredAuth>
+                      }
+                    />
+                  </Route>
+                  <Route index element={<AddressResults />} />
                 </Route>
+
                 <Route
                   path="profile"
                   element={

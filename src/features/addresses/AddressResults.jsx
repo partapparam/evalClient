@@ -5,8 +5,9 @@ import { useSelector } from "react-redux"
 import { selectAddressSelector } from "./address.selectors"
 import { NoAddress } from "./NoAddress"
 import { useSearchParams } from "react-router-dom"
+import { ResidentList } from "../residents/ResidentList"
 
-export const AddressSearch = () => {
+export const AddressResults = () => {
   const address = useSelector(selectAddressSelector)
   const [searchParams] = useSearchParams()
   const searchAddress = searchParams.get("address")
@@ -17,7 +18,7 @@ export const AddressSearch = () => {
         <Search />
       </div>
       <div className="col-start-1 col-end-13">
-        {searchAddress ? <Outlet /> : <NoAddress />}
+        {searchAddress ? <ResidentList /> : <NoAddress />}
       </div>
     </div>
   )

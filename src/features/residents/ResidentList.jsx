@@ -118,14 +118,14 @@ export const ResidentList = () => {
         <div className="flex flex-row justify-between items-center px-3 py-6">
           <p className="font-extrabold text-3xl sm:text-4xl">Residents</p>
           {isLoggedIn ? (
-            <Link to={`../../add/resident?address=${searchAddress}`}>
+            <Link to={`add?address=${searchAddress}`}>
               <PlusCircleIcon className="text-amber-500 w-12 h-12" />
             </Link>
           ) : (
             noAuthButton
           )}
         </div>
-        <p className="text-xl font-light px-4 py-6">{address}</p>
+        <p className="text-xl font-light px-4 py-6">{searchAddress}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         {residentStatus === "loading" ? (
