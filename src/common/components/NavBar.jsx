@@ -13,7 +13,7 @@ export const NavBar = () => {
   }
 
   return (
-    <Disclosure as="nav" className="bg-purple-800">
+    <Disclosure as="nav" className="bg-purple-800 relative">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -102,7 +102,7 @@ export const NavBar = () => {
             leaveFrom="transform opacity-100"
             leaveTo="transform opacity-0"
           >
-            <Disclosure.Panel className="sm:hidden z-50">
+            <Disclosure.Panel className="sm:hidden z-50 absolute bg-purple-800  w-full">
               <div className="space-y-1 px-2 pb-3 pt-2">
                 {!isLoggedIn && (
                   <>

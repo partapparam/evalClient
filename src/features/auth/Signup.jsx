@@ -268,7 +268,9 @@ export const SignupForm = () => {
               />
             </div>
             <div className="font-light text-gray-400 text-center hover:text-gray-900 transition">
-              <Link to="/login">Already a member? Login</Link>
+              <Link to="/login">
+                Already a member? <span className="text-purple-400">Login</span>
+              </Link>
             </div>
           </form>
         </div>
