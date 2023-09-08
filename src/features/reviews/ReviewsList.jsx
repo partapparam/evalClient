@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { selectAllReviewsSelector } from "./reviews.selectors"
 import { fetchReviewsByResident } from "./reviews.thunks"
-import { useOutletContext } from "react-router-dom"
+import { useOutletContext, useSearchParams } from "react-router-dom"
 import { ReviewCard } from "./ReviewCard"
 import { Reviews404 } from "./Reviews404"
 import { clearReviews } from "./reviews.slice"
@@ -11,7 +11,8 @@ import { LoadingSpinner } from "../../common/components/LoadingSpinner"
 export const ReviewsList = () => {
   const dispatch = useDispatch()
   const reviewStatus = useSelector((state) => state.reviews.loading)
-  const residentId = useOutletContext()
+  const [searchParams] = useSearchParams()
+  const residentId = searchParams.get("resident")
 
   useEffect(() => {
     try {

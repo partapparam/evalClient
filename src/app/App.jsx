@@ -20,6 +20,7 @@ import { ForgotPasswordConfirm } from "../features/auth/ForgotPasswordConfirm"
 import { UpdatePasswordForm } from "../features/auth/UpdatePasswordForm"
 import { FAQ } from "../features/FAQ/FAQ"
 import { AddressDetail } from "../features/addresses/AddressDetail"
+import { ReviewForm } from "../features/reviews/ReviewForm"
 
 function App() {
   return (
@@ -49,13 +50,21 @@ function App() {
                     }
                   />
                   <Route
-                    path=":residentId"
+                    path="profile"
                     element={
                       <RequiredAuth>
                         <ResidentDetail />
                       </RequiredAuth>
                     }
                   >
+                    <Route
+                      path="add/review"
+                      element={
+                        <RequiredAuth>
+                          <ReviewForm />
+                        </RequiredAuth>
+                      }
+                    />
                     <Route
                       index
                       element={

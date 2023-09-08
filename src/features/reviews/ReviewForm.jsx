@@ -5,11 +5,22 @@ import { useDispatch } from "react-redux"
 import { postReview } from "./reviews.thunks"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useNotification } from "../../hooks/useNotification"
+import { useSearchParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { selectResidentByIdSelector } from "../residents/residents.selectors"
 
-export const ReviewForm = ({ closeModal, resident }) => {
+export const ReviewForm = () => {
   const dispatch = useDispatch()
   const { getItem } = useLocalStorage()
+  const [searchParams] = useSearchParams()
   const notification = useNotification()
+  const residentId = searchParams.get("resident")
+  const address = searchParams.get("address")
+  const navigate = useNavigate()
+  const resident = useSelector((state) =>
+    selectResidentByIdSelector(state, residentId)
+  )
   const {
     register,
     handleSubmit,
@@ -41,23 +52,23 @@ export const ReviewForm = ({ closeModal, resident }) => {
     }
   }
   const handleReset = () => {
-    closeModal()
     reset()
+    navigate(`..?address=${address}&resident=${residentId}`, { replace: true })
   }
 
   return (
-    <form className="p-5 md:p-8 lg:p-15" onSubmit={handleSubmit(onSubmit)}>
+    <form className="py-5 md:py-8 lg:py-15" onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-6">
         <div>
-          <h1 className="sm:text-4xl text-2xl font-extrabold text-gray-900">
-            Leave a review for {resident.firstName} {resident.lastName}
+          <h1 className="sm:text-2xl text-xl font-bold text-gray-900">
+            Leave a review
           </h1>
-          <p className="mt-1 text-xs leading-6 text-gray-500">
+          <p className="mt-1 text-xs leading-3 text-gray-500">
             This information will be used to create a public review, so please
             be careful what you enter.
           </p>
 
-          <div className="my-6 grid grid-cols-1 gap-y-8 gap-x-6">
+          <div className="my-6 grid grid-cols-1 gap-y-4 gap-x-6">
             <div>
               <label htmlFor="star" className="block text-gray-900">
                 Rate your overall experience.
@@ -83,7 +94,7 @@ export const ReviewForm = ({ closeModal, resident }) => {
                 )}
               </div>
             </div>
-            <div className="space-y-4 border-y border-gray-900/10 py-6">
+            <div className="space-y-2 border-y border-gray-900/10 py-6">
               <div>
                 <label htmlFor="star" className="block text-gray-900">
                   Timely Payment
@@ -194,12 +205,11 @@ export const ReviewForm = ({ closeModal, resident }) => {
           <div>
             <label
               htmlFor="review"
-              className="text-base font-semibold leading-10 text-gray-900"
+              className="text-base font-semibold leading-5 text-gray-900"
             >
               Review
             </label>
             <textarea
-              autoFocus
               maxLength={300}
               // name="review"
               {...register("review")}

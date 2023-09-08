@@ -41,7 +41,7 @@ export const ResidentForm = () => {
         "success"
       )
       navigate(
-        `../${resident.residentId}?address=${searchAddress}&resident=${resident.residentId}`,
+        `../profile?address=${searchAddress}&resident=${resident.residentId}`,
         { replace: true }
       )
     } catch (error) {

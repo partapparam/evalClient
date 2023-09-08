@@ -51,7 +51,7 @@ export const Search = () => {
     if (location.pathname === "/") {
       navigate(`address/residents?address=${address}`)
     } else {
-      navigate(`residents?address=${address}`)
+      navigate(`?address=${address}`)
     }
   }
 
@@ -87,7 +87,7 @@ export const Search = () => {
         <input
           className="w-full !px-6 py-3 rounded-sm border-4 text-md  focus:shadow-sm border-violet-300 focus:border-violet-500 duration-400 transition"
           type="text"
-          placeholder="Type in an address to search..."
+          placeholder="Search for an address..."
           value={search}
           onChange={onChange}
         />
