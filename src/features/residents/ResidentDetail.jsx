@@ -29,7 +29,7 @@ export const ResidentDetail = () => {
     } catch (error) {
       console.log("Failed to load reivews", error.message)
     }
-  }, [residentId])
+  }, [residentId, reviewStatus])
   //   cleanup - this will run once component unmounds and we go back to resident list
   useEffect(() => {
     return () => {
@@ -53,13 +53,56 @@ export const ResidentDetail = () => {
             </Link>
           </button>
         </div>
-        <div className="basis-full text-sm text-gray-600 underline hover:text-gray-800 ">
+        <div className="basis-full text-sm text-gray-600 hover:underline hover:bold hover:text-gray-800 transition">
           <Link replace to={`..?address=${address}`}>
             {address}
           </Link>
         </div>
+        <div>
+          {resident && resident.rating && (
+            <>
+              <p className="inline-block text-lg font-bold text-black">
+                {resident.rating}
+                <span className="text-yellow-400"> &#9733;</span>
+              </p>
+              <div className="flex flex-row flex-wrap text-sm">
+                <div className="basis-1/2 flex flex-row justify-between pr-1">
+                  <p className="text-gray-900">Payment</p>
+                  <p>
+                    {resident.payment}
+                    <span className="text-gray-800"> &#9733;</span>
+                  </p>
+                </div>
+                <div className="basis-1/2 flex flex-row justify-between pr-1 ">
+                  <p className="text-gray-900">Respectful</p>
+                  <p>
+                    {resident.respectful}
+                    <span className="text-gray-800"> &#9733;</span>
+                  </p>
+                </div>
+                <div className="basis-1/2 flex flex-row justify-between pr-1">
+                  <p className="text-gray-900">Friendly</p>
+                  <p>
+                    {resident.friendly}
+                    <span className="text-gray-800"> &#9733;</span>
+                  </p>
+                </div>
+                <div className="basis-1/2 flex flex-row justify-between pr-1">
+                  <p className="text-gray-900">Patient</p>
+                  <p>
+                    {resident.patient}
+                    <span className="text-gray-800"> &#9733;</span>
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
+          {resident && !resident.rating && (
+            <p className="text-blue-500 text-right">No reviews</p>
+          )}
+        </div>
       </div>
-      <div className="grid grid-cols-1 border-t-4 divide-slate-400/2 my-3">
+      <div className="grid grid-cols-1 border-t-2 divide-slate-400/2 my-3">
         <Outlet />
       </div>
     </>
