@@ -5,7 +5,6 @@ import { ResidentsNotFound } from "./ResidentsNotFound"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllResidentsSelector } from "./residents.selectors"
-import { selectAddressSelector } from "../addresses/address.selectors"
 import { fetchResidents } from "./residents.thunks"
 import { LoadingSpinner } from "../../common/components/LoadingSpinner"
 import { PlusCircleIcon } from "@heroicons/react/24/solid"
@@ -21,10 +20,8 @@ export const ResidentList = () => {
   const { isLoggedIn } = useContext(UserContext)
   const location = useLocation()
   const residents = useSelector(selectAllResidentsSelector)
-  const address = useSelector(selectAddressSelector)
   const [searchParams] = useSearchParams()
   const searchAddress = searchParams.get("address")
-  console.log("this is the serach = ", searchAddress)
 
   useEffect(() => {
     if (residentStatus === "idle") {

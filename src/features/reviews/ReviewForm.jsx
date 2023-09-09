@@ -42,7 +42,7 @@ export const ReviewForm = () => {
     data.reviewerJobTitle = reviewer.jobTitle
     data.reviewerProfilePhoto = reviewer.profilePhoto
     try {
-      const review = await dispatch(postReview(data)).unwrap()
+      await dispatch(postReview(data)).unwrap()
       notification.open("Review saved.", "success")
     } catch (error) {
       console.log("failed trying to save reviewForm", error)

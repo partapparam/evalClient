@@ -9,12 +9,12 @@ export const ResidentCard = ({ resident }) => {
         <div className="mx-auto">
           <div>
             <div className="flex justify-between items-baseline py-4 text-base leading-7 text-gray-800 border-b ">
-              <h1 className="text-3xl sm:text-4xl font-bold py-2 block">
+              <h1 className="text-2xl sm:text-3xl font-bold py-2 block">
                 {resident.firstName.slice(0, 1)}. {resident.lastName}
                 {resident.type !== "home" ? (
-                  <p className="text-sm"> Unit: {resident.unit}</p>
+                  <p className="text-sm font-light"> Unit: {resident.unit}</p>
                 ) : (
-                  <p>Homeowner</p>
+                  <p className="text-sm font-light">Home</p>
                 )}
               </h1>
               {/* If no reviews for resident, change UI */}
@@ -25,7 +25,7 @@ export const ResidentCard = ({ resident }) => {
                 </p>
               )}
               {resident && !resident.rating && (
-                <p className="font-bold text-blue-500 text-right">No reviews</p>
+                <p className="text-blue-500 text-right">No reviews</p>
               )}
             </div>
             <div className="py-4 text-base font-light leading-4 space-y-4">

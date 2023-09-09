@@ -2,28 +2,40 @@ import React from "react"
 import { Link, Outlet, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectResidentByIdSelector } from "./residents.selectors"
-import { Dialog, Transition } from "@headlessui/react"
-import { Fragment, useState } from "react"
-import { ReviewForm } from "../reviews/ReviewForm"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { PlusCircleIcon } from "@heroicons/react/24/solid"
+import { clearReviews } from "../reviews/reviews.slice"
+import { fetchReviewsByResident } from "../reviews/reviews.thunks"
 
 export const ResidentDetail = () => {
   const [searchParams] = useSearchParams()
+  const dispatch = useDispatch()
   const residentId = searchParams.get("resident")
   const address = searchParams.get("address")
   const resident = useSelector((state) =>
     selectResidentByIdSelector(state, residentId)
   )
+  const reviewStatus = useSelector((state) => state.reviews.status)
 
-  const [isOpen, setIsOpen] = useState(false)
-  function closeModal() {
-    setIsOpen(false)
-  }
-  function openModal() {
-    setIsOpen(true)
-  }
-
-  console.log("Resident", resident)
+  useEffect(() => {
+    try {
+      if (reviewStatus === "idle") {
+        dispatch(fetchReviewsByResident(residentId))
+        console.log("Fetch Reviews Called")
+      } else {
+        console.log("does not run")
+      }
+    } catch (error) {
+      console.log("Failed to load reivews", error.message)
+    }
+  }, [residentId])
+  //   cleanup - this will run once component unmounds and we go back to resident list
+  useEffect(() => {
+    return () => {
+      dispatch(clearReviews())
+    }
+  }, [dispatch])
 
   const residentDetailView = (
     <>
@@ -35,7 +47,7 @@ export const ResidentDetail = () => {
           </h1>
         </div>
         <div className="basis-1/4 flex justify-end">
-          <button onClick={openModal}>
+          <button>
             <Link to={`add/review?address=${address}&resident=${residentId}`}>
               <PlusCircleIcon className="text-amber-500 w-12 h-12" />
             </Link>
@@ -59,7 +71,7 @@ export const ResidentDetail = () => {
       ) : (
         <div className="font-bold text-3xl py-10 text-center">
           404 - Something was not found!{" "}
-          <Link className="text-indigo-700" to="..">
+          <Link className="text-indigo-700" to={`..?address=${address}`}>
             Click here to Go Back.
           </Link>
         </div>

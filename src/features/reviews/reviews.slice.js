@@ -13,8 +13,10 @@ const reviewsSlice = createSlice({
   initialState: initialState,
   reducers: {
     clearReviews(state, action) {
+      console.log("clear reviews called")
       state.cards = []
       state.loading = false
+      state.status = "idle"
       return
     },
   },
@@ -25,7 +27,8 @@ const reviewsSlice = createSlice({
       })
       .addCase(fetchReviewsByResident.fulfilled, (state, action) => {
         state.loading = false
-        state.cards = state.cards.concat(action.payload)
+        state.status = "loaded"
+        state.cards = action.payload
       })
       .addCase(fetchReviewsByResident.rejected, (state, action) => {
         state.loading = false
