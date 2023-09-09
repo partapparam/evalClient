@@ -11,9 +11,11 @@ export const ResidentCard = ({ resident }) => {
             <div className="flex justify-between items-baseline py-4 text-base leading-7 text-gray-800 border-b ">
               <h1 className="text-3xl sm:text-4xl font-bold py-2 block">
                 {resident.firstName.slice(0, 1)}. {resident.lastName}
-                <p className="text-sm p-2 bg-green-300">
-                  Unit: {resident.unit}
-                </p>
+                {resident.type !== "home" ? (
+                  <p className="text-sm"> Unit: {resident.unit}</p>
+                ) : (
+                  <p>Homeowner</p>
+                )}
               </h1>
               {/* If no reviews for resident, change UI */}
               {resident && resident.rating && (
