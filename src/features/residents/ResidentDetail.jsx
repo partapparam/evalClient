@@ -29,7 +29,7 @@ export const ResidentDetail = () => {
     } catch (error) {
       console.log("Failed to load reivews", error.message)
     }
-  }, [residentId, reviewStatus])
+  }, [residentId])
   //   cleanup - this will run once component unmounds and we go back to resident list
   useEffect(() => {
     return () => {
@@ -40,19 +40,13 @@ export const ResidentDetail = () => {
   const residentDetailView = (
     <>
       <div className="flex flex-row flex-between items-center flex-wrap">
-        <div className="grow my-3 space-x-6 basis-3/4">
+        <div className="grow my-3 space-x-6 basis-full">
           <h1 className="text-black font-extrabold text-4xl">
             {resident && resident.firstName.slice(0, 1)}.{" "}
             {resident && resident.lastName}
           </h1>
         </div>
-        <div className="basis-1/4 flex justify-end">
-          <button>
-            <Link to={`add/review?address=${address}&resident=${residentId}`}>
-              <PlusCircleIcon className="text-amber-500 w-12 h-12" />
-            </Link>
-          </button>
-        </div>
+
         <div className="basis-full text-sm text-gray-600 hover:underline hover:bold hover:text-gray-800 transition">
           <Link replace to={`..?address=${address}`}>
             {address}

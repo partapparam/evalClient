@@ -16,6 +16,7 @@ export const StarRatingForm = ({ value, onChange, secondary }) => {
           <button
             type="button"
             key={index}
+            autoFocus
             className={
               index <= ((value && hover) || hover) && secondary
                 ? "text-gray-800 transition-all"

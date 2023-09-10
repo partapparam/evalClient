@@ -5,7 +5,6 @@ import {
   postReview,
 } from "./reviews.thunks"
 
-// TODO - Update Review Thunk
 const initialState = { cards: [], loading: false, status: "idle", error: null }
 
 const reviewsSlice = createSlice({

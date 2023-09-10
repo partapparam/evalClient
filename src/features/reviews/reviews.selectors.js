@@ -15,3 +15,13 @@ export const selectReviewByIdSelector = createSelector(
     return review
   }
 )
+
+export const selectReviewByUserIdSelector = createSelector(
+  [selectAllReviews, (state, userId) => userId],
+  (reviews, userId) => {
+    console.log("Find reviews by user")
+    const review = reviews.cards.find((r) => (userId = r.reviewUserIdFkey))
+    console.log(review)
+    return review
+  }
+)
