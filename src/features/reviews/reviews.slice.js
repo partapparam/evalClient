@@ -12,7 +12,6 @@ const reviewsSlice = createSlice({
   initialState: initialState,
   reducers: {
     clearReviews(state, action) {
-      console.log("clear reviews called")
       state.cards = []
       state.loading = false
       state.status = "idle"

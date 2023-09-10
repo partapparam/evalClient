@@ -37,19 +37,19 @@ export const ReviewCard = ({ review }) => {
           <div className="w-full px-2 py-4">{review.review}</div>
           <div className="flex p-2 flex-row flex-wrap w-full border-t-2">
             <div className="basis-1/2 sm:basis-1/2 py-3">
-              <span className="font-light text-gray-700">Timely Payment</span>
+              <span className="text-sm text-gray-700">Timely Payment</span>
               <StarRating rate={review.payment} secondary={true} />
             </div>
             <div className="basis-full sm:basis-1/2 py-3">
-              <span className="font-light text-gray-700">Friendly</span>
+              <span className=" text-sm text-gray-700">Friendly</span>
               <StarRating rate={review.friendly} secondary={true} />
             </div>
             <div className="basis-full sm:basis-1/2 py-3">
-              <span className="font-light text-gray-700">Patient</span>
+              <span className=" text-sm text-gray-700">Patient</span>
               <StarRating rate={review.patient} secondary={true} />
             </div>
             <div className="basis-full sm:basis-1/2 py-3">
-              <span className="font-light text-gray-700">Respectful</span>
+              <span className=" text-sm text-gray-700">Respectful</span>
 
               <StarRating rate={review.respectful} secondary={true} />
             </div>

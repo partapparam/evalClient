@@ -24,15 +24,12 @@ export const ReviewsList = () => {
       <ReviewCard review={r} />
     </div>
   ))
-
-  const checkIfUserHasReviewed = async () => {}
   const [hasReviewed, setHasReviewed] = useState(false)
 
   // Run once we have reviews to ensure the user has not reviewed before.
   // If they have, change state
   useEffect(() => {
     const check = reviews.find((r) => r.reviewUserIdFkey === user.userId)
-    console.log("check = ", check)
     if (check) setHasReviewed(true)
   }, [reviews])
 
@@ -43,7 +40,9 @@ export const ReviewsList = () => {
       <span className="absolute z-10 top-10 scale-0 rounded p-2 text-xs text-green-500 group-hover:scale-100">
         Reviewed!
       </span> */}
-      <span className=" z-10  text-xs text-green-500 ">Reviewed!</span>
+      <span className=" z-10 p-1 rounded-md bg-green-500 text-xs text-white ">
+        Reviewed
+      </span>
     </span>
   )
 

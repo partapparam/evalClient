@@ -22,9 +22,6 @@ export const ResidentDetail = () => {
     try {
       if (reviewStatus === "idle") {
         dispatch(fetchReviewsByResident(residentId))
-        console.log("Fetch Reviews Called")
-      } else {
-        console.log("does not run")
       }
     } catch (error) {
       console.log("Failed to load reivews", error.message)
