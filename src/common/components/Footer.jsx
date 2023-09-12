@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { useState, Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
+import { FeedbackForm } from "../../features/home/FeedbackForm"
 
 export const Footer = () => {
   let [isOpen, setIsOpen] = useState(false)
@@ -49,35 +50,10 @@ export const Footer = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    Payment successful
+                  <Dialog.Title className="text-3xl font-extrabold py-5 text-gray-900">
+                    Provide Feedback
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-red-200 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
-                    >
-                      Submit
-                    </button>
-                  </div>
+                  <FeedbackForm closeModal={closeModal} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

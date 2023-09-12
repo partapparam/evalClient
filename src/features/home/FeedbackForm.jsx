@@ -22,12 +22,12 @@ export const FeedbackForm = ({ closeModal }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col">
-        <div className="">
+        <div className="my-4">
           <label
-            htmlFor="apt"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-900"
           >
-            Email
+            Your Email
           </label>
           <div className="mt-2">
             <input
@@ -49,9 +49,9 @@ export const FeedbackForm = ({ closeModal }) => {
         <div>
           <label
             htmlFor="feedback"
-            className="text-base font-semibold leading-5 text-gray-900"
+            className="block text-sm font-medium text-gray-900"
           >
-            Review
+            How can we improve?
           </label>
           <textarea
             maxLength={500}
@@ -59,20 +59,20 @@ export const FeedbackForm = ({ closeModal }) => {
             {...register("feedback")}
             rows={6}
             cols={30}
-            className="block w-full rounded-md border-0 p-2  text-gray-900 shadow-sm ring-1 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-2 p-2  text-gray-900 shadow-sm border-gray-300 placeholder:text-gray-400 "
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-4 text-right">
           <button
             type="button"
-            className="inline-flex justify-center rounded-md border border-transparent bg-red-200 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+            className="inline-flex mx-2 justify-center rounded-md border border-transparent bg-red-300 px-4 py-2 text-sm font-medium text-white hover:bg-red-400 "
             onClick={formCancel}
           >
             Cancel
           </button>
           <input
             type="submit"
-            className="inline-flex justify-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="inline-flex justify-center rounded-md border border-transparent bg-green-400 px-4 py-2 text-sm font-medium text-white hover:bg-green-500 "
           />
         </div>
       </form>
