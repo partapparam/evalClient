@@ -7,7 +7,7 @@ export const Notification = (props) => {
 
   return (
     <div
-      className={`py-4 px-2 rounded-sm shadow-lg text-white text-large font-medium z-50 relative mb-3 flex flex-row items-center justify-between ${
+      className={`py-4 px-2 rounded-md shadow-lg text-white text-large font-medium z-50 relative mb-3 flex flex-row items-center justify-between ${
         props.status === "success" ? "bg-green-500" : "bg-rose-500"
       }`}
     >

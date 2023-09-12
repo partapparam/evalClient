@@ -1,6 +1,8 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 
+import { useNotification } from "../../hooks/useNotification"
+
 export const FeedbackForm = ({ closeModal }) => {
   const {
     register,
@@ -8,10 +10,16 @@ export const FeedbackForm = ({ closeModal }) => {
     handleSubmit,
     formState: { errors },
   } = useForm()
+  const notification = useNotification()
 
   const formSubmit = (data) => {
     console.log(data)
     reset()
+    notification.open(
+      "Thank you for providing feedback on how we can improve.",
+      "success"
+    )
+    closeModal()
   }
 
   const formCancel = () => {
