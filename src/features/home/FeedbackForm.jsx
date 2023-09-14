@@ -2,6 +2,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 
 import { useNotification } from "../../hooks/useNotification"
+import { sendFeedback } from "./feedback.service"
 
 export const FeedbackForm = ({ closeModal }) => {
   const {
@@ -12,14 +13,20 @@ export const FeedbackForm = ({ closeModal }) => {
   } = useForm()
   const notification = useNotification()
 
-  const formSubmit = (data) => {
+  const formSubmit = async (data) => {
     console.log(data)
-    reset()
-    notification.open(
-      "Thank you for providing feedback on how we can improve.",
-      "success"
-    )
-    closeModal()
+    try {
+      const result = await sendFeedback(data)
+      notification.open(
+        "Thank you for providing feedback on how we can improve.",
+        "success"
+      )
+      closeModal()
+    } catch (error) {
+      notification.open("Please try again, there was an issue.", "error")
+    } finally {
+      reset()
+    }
   }
 
   const formCancel = () => {
