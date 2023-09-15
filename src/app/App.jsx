@@ -21,6 +21,7 @@ import { UpdatePasswordForm } from "../features/auth/UpdatePasswordForm"
 import { FAQ } from "../features/FAQ/FAQ"
 import { AddressDetail } from "../features/addresses/AddressDetail"
 import { ReviewForm } from "../features/reviews/ReviewForm"
+import { EditProfileForm } from "../features/auth/EditProfileForm"
 
 function App() {
   return (
@@ -85,6 +86,8 @@ function App() {
                     </RequiredAuth>
                   }
                 >
+                  <Route path="edit" element={<EditProfileForm />} />
+
                   <Route index element={<ReviewsList />} />
                 </Route>
                 <Route path="faq" element={<FAQ />} />

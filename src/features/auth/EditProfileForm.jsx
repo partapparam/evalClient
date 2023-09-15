@@ -2,6 +2,9 @@ import React from "react"
 import { useForm } from "react-hook-form"
 
 export const EditProfileForm = () => {
+  const { register, handleSubmit, reset } = useForm()
+  const onSubmit = (data) => [console.log(data)]
+
   return (
     <div>
       <form
