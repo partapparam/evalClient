@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
@@ -13,7 +13,7 @@ export const Profile = () => {
   const { getItem, setItem } = useLocalStorage()
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm()
-  let user
+  const [user, setUser] = useState(() => getItem("user"))
   const [imagePreview, setImagePreview] = useState("")
   const [imageFile, setImageFile] = useState(null)
   const notification = useNotification()
@@ -48,11 +48,6 @@ export const Profile = () => {
     setImagePreview(URL.createObjectURL(event.target.files[0]))
   }
 
-  useEffect(() => {
-    user = localStorage.getItem("user")
-    console.log("runnning user")
-  }, [user])
-
   return (
     <div className="flex flex-col md:flex-row mx-5">
       {loadingView && <LoadingSpinner />}
@@ -67,7 +62,7 @@ export const Profile = () => {
               />
             ) : (
               <img
-                src={user.profilePhoto}
+                src={user && user.profilePhoto}
                 alt=""
                 className="w-40 h-40 rounded-full shadow"
               />
@@ -98,24 +93,23 @@ export const Profile = () => {
             </div>
           </form>
         </div>
-        <div className="place-self-center">
-          <p className="text-3xl font-extrabold">
-            {user.firstName} {user.lastName}
-          </p>
-          <p>{user.jobTitle}</p>
-          <p className="text-gray-600 font-light">
-            Member since: {formatDatePublic(user.createdAt)}
-          </p>
-          <p className="text-center my-2">
-            <Link
-              to="edit"
-              className="py-1 px-2 rounded-md border-2 border-gray-800 hover:bg-gray-200 "
-            >
-              Edit
-            </Link>
-          </p>
-        </div>
+        {user && (
+          <div className="place-self-center">
+            <p className="text-gray-600 text-sm font-light">
+              Member since: {formatDatePublic(user.createdAt)}
+            </p>
+            <p className="text-center my-2">
+              <Link
+                to="edit"
+                className="py-1 px-2 rounded-md border-2 border-gray-800 hover:bg-gray-200 "
+              >
+                Edit Profile
+              </Link>
+            </p>
+          </div>
+        )}
       </div>
+
       <div className=" md:basis-2/3 p-5">
         <Outlet />
       </div>

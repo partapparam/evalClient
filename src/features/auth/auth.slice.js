@@ -66,7 +66,7 @@ const authSlice = createSlice({
         state.status = "loading"
       })
       .addCase(editProfileThunk.fulfilled, (state, action) => {
-        state.status = "idle"
+        state.status = "success"
       })
       .addCase(editProfileThunk.rejected, (state, action) => {
         state.status = "failed"

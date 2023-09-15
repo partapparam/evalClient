@@ -88,7 +88,7 @@ function App() {
                 >
                   <Route path="edit" element={<EditProfileForm />} />
 
-                  <Route index element={<ReviewsList />} />
+                  {/* <Route index element={<ReviewsList />} /> */}
                 </Route>
                 <Route path="faq" element={<FAQ />} />
 
