@@ -1,12 +1,15 @@
 import React from "react"
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { INDUSTRIES } from "../../common/constants"
 import { editProfileThunk } from "./auth.thunks"
+import { useDispatch } from "react-redux"
+import { useNotification } from "../../hooks/useNotification"
 
 export const EditProfileForm = () => {
   const { getItem, setItem } = useLocalStorage()
+  const dispatch = useDispatch()
   let user = getItem("user")
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -16,9 +19,24 @@ export const EditProfileForm = () => {
       jobTitle: user.jobTitle,
     },
   })
-  console.log(user)
+  const notification = useNotification()
+  const navigate = useNavigate()
 
-  const onSubmit = (data) => [console.log(data)]
+  const onSubmit = async (data) => {
+    data.userId = user.userId
+    try {
+      const result = await dispatch(editProfileThunk(data)).unwrap()
+      console.log(result)
+      setItem("user", result)
+      notification.open("Profile Updated", "success")
+      navigate("..", { replace: true })
+    } catch (error) {
+      console.log(error)
+      notification.open("Could not update, try again", "error")
+      reset()
+    } finally {
+    }
+  }
 
   return (
     <div>

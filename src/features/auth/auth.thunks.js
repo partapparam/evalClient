@@ -40,7 +40,7 @@ export const editProfileThunk = createAsyncThunk(
     try {
       const response = await editProfile(data)
       if (response.data.message === "error") throw Error(response.data.data)
-      return response.data
+      return response.data.data
     } catch (error) {
       console.log("Error with edit profile", error)
       throw Error(error.message)

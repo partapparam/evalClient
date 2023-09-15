@@ -12,7 +12,7 @@ const signup = async (body) => {
 }
 
 const editProfile = (body) => {
-  const response = axiosClient.post("auth/profile/edit", body)
+  const response = axiosClient.put(`users/${body.userId}/update`, body)
   return response
 }
 

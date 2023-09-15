@@ -13,7 +13,7 @@ export const Profile = () => {
   const { getItem, setItem } = useLocalStorage()
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm()
-  const user = getItem("user")
+  let user
   const [imagePreview, setImagePreview] = useState("")
   const [imageFile, setImageFile] = useState(null)
   const notification = useNotification()
@@ -47,6 +47,11 @@ export const Profile = () => {
     setImageFile(event.target.files[0])
     setImagePreview(URL.createObjectURL(event.target.files[0]))
   }
+
+  useEffect(() => {
+    user = localStorage.getItem("user")
+    console.log("runnning user")
+  }, [user])
 
   return (
     <div className="flex flex-col md:flex-row mx-5">
@@ -94,7 +99,7 @@ export const Profile = () => {
           </form>
         </div>
         <div className="place-self-center">
-          <p className="text-4xl font-extrabold">
+          <p className="text-3xl font-extrabold">
             {user.firstName} {user.lastName}
           </p>
           <p>{user.jobTitle}</p>
