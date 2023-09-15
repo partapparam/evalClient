@@ -6,10 +6,13 @@ const login = async (body) => {
 }
 
 const signup = async (body) => {
-  console.log(body)
-
   const response = axiosClient.post("auth/signup", body)
 
+  return response
+}
+
+const editProfile = (body) => {
+  const response = axiosClient.post("auth/profile/edit", body)
   return response
 }
 
@@ -45,4 +48,5 @@ export {
   forgotPassword,
   confirmToken,
   updatePassword,
+  editProfile,
 }

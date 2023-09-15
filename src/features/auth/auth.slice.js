@@ -5,6 +5,7 @@ import {
   loginUser,
   signupUser,
   updatePasswordThunk,
+  editProfileThunk,
 } from "./auth.thunks"
 
 const initialState = { user: null, state: "idle", error: null }
@@ -59,6 +60,15 @@ const authSlice = createSlice({
         state.status = "idle"
       })
       .addCase(updatePasswordThunk.rejected, (state, action) => {
+        state.status = "failed"
+      })
+      .addCase(editProfileThunk.pending, (state, action) => {
+        state.status = "loading"
+      })
+      .addCase(editProfileThunk.fulfilled, (state, action) => {
+        state.status = "idle"
+      })
+      .addCase(editProfileThunk.rejected, (state, action) => {
         state.status = "failed"
       })
   },

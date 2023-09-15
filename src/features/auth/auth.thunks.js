@@ -6,6 +6,7 @@ import {
   forgotPassword,
   confirmToken,
   updatePassword,
+  editProfile,
 } from "./auth.service"
 
 export const loginUser = createAsyncThunk("auth/loginUser", async (user) => {
@@ -24,15 +25,28 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (user) => {
 export const signupUser = createAsyncThunk("auth/signupUser", async (data) => {
   try {
     const response = await signup(data)
-    if (response.data.message === "error") {
-      if (response.data.message === "error") throw Error(response.data.data)
-    }
+    if (response.data.message === "error") throw Error(response.data.data)
+
     return response.data
   } catch (error) {
     console.log("error signup thunk", error)
     throw new Error(error.message)
   }
 })
+
+export const editProfileThunk = createAsyncThunk(
+  "auth/editProfile",
+  async (data) => {
+    try {
+      const response = await editProfile(data)
+      if (response.data.message === "error") throw Error(response.data.data)
+      return response.data
+    } catch (error) {
+      console.log("Error with edit profile", error)
+      throw Error(error.message)
+    }
+  }
+)
 
 export const updateImage = createAsyncThunk("auth/update", async (data) => {
   try {

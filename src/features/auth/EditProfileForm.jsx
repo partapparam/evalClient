@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { INDUSTRIES } from "../../common/constants"
+import { editProfileThunk } from "./auth.thunks"
 
 export const EditProfileForm = () => {
   const { getItem, setItem } = useLocalStorage()
