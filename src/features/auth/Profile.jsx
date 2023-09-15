@@ -7,6 +7,7 @@ import { formatDatePublic } from "../../common/convertDate"
 import { useNotification } from "../../hooks/useNotification"
 import { LoadingSpinner } from "../../common/components/LoadingSpinner"
 import { Outlet } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export const Profile = () => {
   const { getItem, setItem } = useLocalStorage()
@@ -99,6 +100,14 @@ export const Profile = () => {
           <p>{user.jobTitle}</p>
           <p className="text-gray-600 font-light">
             Member since: {formatDatePublic(user.createdAt)}
+          </p>
+          <p className="text-center my-2">
+            <Link
+              to="edit"
+              className="py-1 px-2 rounded-md border-2 border-gray-800 hover:bg-gray-200 "
+            >
+              Edit
+            </Link>
           </p>
         </div>
       </div>

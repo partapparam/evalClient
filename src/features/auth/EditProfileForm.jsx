@@ -1,5 +1,6 @@
 import React from "react"
 import { useForm } from "react-hook-form"
+import { Link } from "react-router-dom"
 
 export const EditProfileForm = () => {
   const { register, handleSubmit, reset } = useForm()
@@ -7,6 +8,7 @@ export const EditProfileForm = () => {
 
   return (
     <div>
+      <p className="text-3xl font-extrabold">Edit Profile</p>
       <form
         className="mt-8 space-y-6 text-left"
         onSubmit={handleSubmit(onSubmit)}
@@ -46,10 +48,16 @@ export const EditProfileForm = () => {
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-row">
+          <Link
+            to=".."
+            className="text-sm py-2 px-3 font-semibold bg-red-300 rounded-md text-white shadow-s hover:bg-red-400"
+          >
+            Cancel
+          </Link>
           <input
             type="submit"
-            className="group relative flex w-full justify-center rounded-md py-2 px-3 text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600"
+            className="rounded-md py-2 px-3 text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600"
           />
         </div>
       </form>
