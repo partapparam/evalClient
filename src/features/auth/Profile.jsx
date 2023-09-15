@@ -6,6 +6,7 @@ import { updateImage } from "./auth.thunks"
 import { formatDatePublic } from "../../common/convertDate"
 import { useNotification } from "../../hooks/useNotification"
 import { LoadingSpinner } from "../../common/components/LoadingSpinner"
+import { Outlet } from "react-router-dom"
 
 export const Profile = () => {
   const { getItem, setItem } = useLocalStorage()
@@ -47,9 +48,9 @@ export const Profile = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col md:flex-row mx-5">
       {loadingView && <LoadingSpinner />}
-      <div className="my-5 flex flex-col">
+      <div className="my-5 flex flex-col md:basis-1/3">
         <div className="bg-slate-100 shadow-md place-self-center p-8 my-5">
           <div className="mt-2 p-5">
             {imagePreview ? (
@@ -101,6 +102,9 @@ export const Profile = () => {
           </p>
         </div>
       </div>
-    </>
+      <div className=" md:basis-2/3 p-5">
+        <Outlet />
+      </div>
+    </div>
   )
 }

@@ -84,7 +84,9 @@ function App() {
                       <Profile />
                     </RequiredAuth>
                   }
-                />
+                >
+                  <Route index element={<ReviewsList />} />
+                </Route>
                 <Route path="faq" element={<FAQ />} />
 
                 <Route index element={<Home />} />
