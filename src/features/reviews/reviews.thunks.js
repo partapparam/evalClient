@@ -11,7 +11,7 @@ export const fetchReviewsByResident = createAsyncThunk(
       }
       return response.data.data
     } catch (error) {
-      console.log("error fetching residents", error)
+      // console.log("error fetching residents", error)
       throw new Error(error.message)
     }
   }

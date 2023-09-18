@@ -26,12 +26,10 @@ export const EditProfileForm = () => {
     data.userId = user.userId
     try {
       const result = await dispatch(editProfileThunk(data)).unwrap()
-      console.log(result)
       setItem("user", result)
       notification.open("Profile Updated", "success")
       navigate("..", { replace: true })
     } catch (error) {
-      console.log(error)
       notification.open("Could not update, try again", "error")
       reset()
     } finally {

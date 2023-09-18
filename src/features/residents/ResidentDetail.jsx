@@ -24,7 +24,7 @@ export const ResidentDetail = () => {
         dispatch(fetchReviewsByResident(residentId))
       }
     } catch (error) {
-      console.log("Failed to load reivews", error.message)
+      // console.log("Failed to load reivews", error.message)
     }
   }, [residentId])
   //   cleanup - this will run once component unmounds and we go back to resident list

@@ -44,7 +44,6 @@ export const UpdatePasswordForm = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault()
-    console.log(data)
     try {
       if (data.password !== data.confirmPassword) {
         notification.open("The passwords do not match", "error")
@@ -61,7 +60,6 @@ export const UpdatePasswordForm = () => {
       )
       navigate("/login")
     } catch (error) {
-      console.log(error)
       notification.open(error.message, "error")
       navigate("..")
     } finally {

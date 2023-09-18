@@ -31,7 +31,6 @@ export const Profile = () => {
       notification.open("Profile photo changed", "success")
       setItem("user", returnedUser)
     } catch (error) {
-      console.log("Failed to save image", error)
       notification.open(error.message, "error")
     } finally {
       reset()

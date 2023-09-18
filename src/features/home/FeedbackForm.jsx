@@ -14,9 +14,8 @@ export const FeedbackForm = ({ closeModal }) => {
   const notification = useNotification()
 
   const formSubmit = async (data) => {
-    console.log(data)
     try {
-      const result = await sendFeedback(data)
+      await sendFeedback(data)
       notification.open(
         "Thank you for providing feedback on how we can improve.",
         "success"

@@ -17,7 +17,6 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (user) => {
     }
     return response.data
   } catch (error) {
-    console.log("error login", error)
     throw new Error(error.message)
   }
 })
@@ -29,7 +28,6 @@ export const signupUser = createAsyncThunk("auth/signupUser", async (data) => {
 
     return response.data
   } catch (error) {
-    console.log("error signup thunk", error)
     throw new Error(error.message)
   }
 })
@@ -42,7 +40,7 @@ export const editProfileThunk = createAsyncThunk(
       if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
-      console.log("Error with edit profile", error)
+      // console.log("Error with edit profile", error)
       throw Error(error.message)
     }
   }
@@ -55,7 +53,7 @@ export const updateImage = createAsyncThunk("auth/update", async (data) => {
 
     return response.data.data
   } catch (error) {
-    console.log("update profile Error", error)
+    // console.log("update profile Error", error)
     throw new Error(error.message)
   }
 })
@@ -68,7 +66,7 @@ export const forgotPasswordThunk = createAsyncThunk(
       if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
-      console.log("Forgot Password Thunk error", error.message)
+      // console.log("Forgot Password Thunk error", error.message)
       throw Error(error.message)
     }
   }
@@ -82,7 +80,7 @@ export const confirmTokenThunk = createAsyncThunk(
       if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
-      console.log("Confirm Token Thunk Error", error)
+      // console.log("Confirm Token Thunk Error", error)
       throw Error(error.message)
     }
   }
@@ -96,7 +94,7 @@ export const updatePasswordThunk = createAsyncThunk(
       if (response.data.message === "error") throw Error(response.data.data)
       return response.data.data
     } catch (error) {
-      console.log("Update Password Thunk error", error)
+      // console.log("Update Password Thunk error", error)
       throw Error(error.message)
     }
   }

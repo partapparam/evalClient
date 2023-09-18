@@ -45,7 +45,6 @@ export const ReviewForm = () => {
       await dispatch(postReview(data)).unwrap()
       notification.open("Review saved.", "success")
     } catch (error) {
-      console.log("failed trying to save reviewForm", error)
       notification.open("Review was not saved, try again.", "error")
     } finally {
       handleReset()

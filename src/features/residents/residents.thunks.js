@@ -11,7 +11,7 @@ export const fetchResidents = createAsyncThunk(
       }
       return response.data.data
     } catch (error) {
-      console.log("error fetching residents", error)
+      // console.log("error fetching residents", error)
       throw new Error(error.message)
     }
   }
@@ -27,7 +27,7 @@ export const postResident = createAsyncThunk(
       }
       return response.data.data
     } catch (error) {
-      console.log("error while saving", error)
+      // console.error("error while saving", error)
       throw new Error(error.message)
     }
   }

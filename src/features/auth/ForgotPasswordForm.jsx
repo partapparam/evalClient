@@ -25,11 +25,9 @@ export const ForgotPasswordForm = () => {
     event.preventDefault()
     try {
       const response = await dispatch(forgotPasswordThunk(data)).unwrap()
-      console.log(response)
       notification.open("Reset email sent.", "success")
       navigate("form/success")
     } catch (error) {
-      console.log("this error is called", error)
       notification.open(
         `Failed to reset your password: ${error.message}`,
         "error"

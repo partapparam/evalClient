@@ -28,7 +28,7 @@ export const ResidentList = () => {
       try {
         dispatch(fetchResidents(searchAddress))
       } catch (error) {
-        console.log("failed to load residents", error.message)
+        // console.log("failed to load residents", error.message)
       }
     }
   }, [dispatch, searchAddress, residentStatus])
