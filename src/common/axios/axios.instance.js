@@ -3,7 +3,6 @@ import axios from "axios"
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 })
-axiosClient.defaults.headers.common["Authorization"] = "test"
 axiosClient.interceptors.request.use(
   (config) => {
     // JSON.stringify to store token and JSON.parse to deserialize it from string into JSON
