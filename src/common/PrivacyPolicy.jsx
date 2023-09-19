@@ -2,7 +2,7 @@ import React from "react"
 
 export const PrivacyPolicy = () => {
   return (
-    <div>
+    <div className="px-8 py-5">
       <h1>PRIVACY POLICY</h1>
       <p>
         The EVAL website is provided to help individuals and businesses in

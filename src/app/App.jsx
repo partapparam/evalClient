@@ -22,6 +22,7 @@ import { FAQ } from "../features/FAQ/FAQ"
 import { AddressDetail } from "../features/addresses/AddressDetail"
 import { ReviewForm } from "../features/reviews/ReviewForm"
 import { EditProfileForm } from "../features/auth/EditProfileForm"
+import { PrivacyPolicy } from "../common/PrivacyPolicy"
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function App() {
                   {/* <Route index element={<ReviewsList />} /> */}
                 </Route>
                 <Route path="faq" element={<FAQ />} />
+                <Route path="privacyPolicy" element={<PrivacyPolicy />} />
 
                 <Route index element={<Home />} />
               </Route>

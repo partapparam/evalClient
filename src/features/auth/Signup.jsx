@@ -257,7 +257,13 @@ export const SignupForm = () => {
                 onClick={() => setConfirmTerms(!confirmTerms)}
                 className="mr-2"
               />
-              <label>I accept the Eval Privacy Policy and Terms of Use.</label>
+              <label>
+                I accept the Eval{" "}
+                <span>
+                  <Link to={"/privacyPolicy"}>Privacy Policy and Terms</Link>
+                </span>{" "}
+                of Use.
+              </label>
             </div>
 
             <div>
