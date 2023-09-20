@@ -4,15 +4,15 @@ export const HIWList = [
     content: `You must have an account to leave reviews`,
   },
   {
-    title: "Search for an Address",
-    content: `Look up the address of your job. `,
+    title: "Search for an address",
+    content: `Where is your customer located?`,
   },
   {
     title: "Choose the resident",
-    content: `Choose the resident you want to review or create one if they don't exist at this address`,
+    content: `If they do not exist yet, you can add them to the list`,
   },
   {
-    title: "Leave a review",
-    content: `Its important to leave an honest review. It will be public an monitored by our team.`,
+    title: "Review your customer",
+    content: `Be honest and respectful. Reviews are monitored by our team.`,
   },
 ]

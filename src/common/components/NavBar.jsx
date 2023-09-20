@@ -1,14 +1,18 @@
 import React from "react"
 import { Disclosure, Transition, Dialog } from "@headlessui/react"
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, XCircleIcon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext"
 import { useState, Fragment, useContext } from "react"
 import { HowItWorks } from "../../features/home/HowItWorks"
+import {
+  ExclamationCircleIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/20/solid"
 
 export const NavBar = () => {
   const { isLoggedIn, logout } = useContext(UserContext)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -64,7 +68,12 @@ export const NavBar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    <p onClick={openModal}>How It works</p>
+                    <p
+                      onClick={openModal}
+                      className="text-slate-100 bg-rose-500 hover:bg-rose-600 transition hover:cursor-pointer duration-300 rounded-md px-3 py-2 text-sm font-medium"
+                    >
+                      How Eval Works?
+                    </p>
                     <Link to="/faq">
                       <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
                         FAQ
@@ -102,6 +111,16 @@ export const NavBar = () => {
                     )}
                   </div>
                 </div>
+              </div>
+              {/* How it works TODO */}
+              {/* <div className="sm:hidden">
+                <QuestionMarkCircleIcon className=" bg-white rounded-full w-6 h-6 text-rose-500 text-xs" />
+              </div> */}
+              <div className="sm:hidden">
+                <ExclamationCircleIcon
+                  onClick={openModal}
+                  className=" bg-white rounded-full w-6 h-6 text-rose-500 text-xs"
+                />
               </div>
             </div>
           </div>
@@ -152,6 +171,16 @@ export const NavBar = () => {
                     FAQ
                   </p>
                 </Disclosure.Button>
+
+                {/* TODO How it works  */}
+                {/* <Disclosure.Button>
+                  <p
+                    onClick={openModal}
+                    className="text-slate-100 hover:bg-rose-600 bg-rose-500 transition duration-300 rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    How It Works
+                  </p>
+                </Disclosure.Button> */}
               </div>
             </Disclosure.Panel>
           </Transition>
@@ -182,10 +211,16 @@ export const NavBar = () => {
                     leaveTo="opacity-0 scale-95"
                   >
                     <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                      <Dialog.Title className="text-3xl font-extrabold py-5 text-gray-900">
-                        Provide Feedback
+                      <div className="w-full text-right">
+                        <XCircleIcon
+                          onClick={closeModal}
+                          className="text-gray-700 w-6 "
+                        />
+                      </div>
+                      <Dialog.Title className="text-3xl font-extrabold py-5 text-gray-900 text-center">
+                        How to use Eval?
                       </Dialog.Title>
-                      <HowItWorks closeModal={closeModal} />
+                      <HowItWorks />
                     </Dialog.Panel>
                   </Transition.Child>
                 </div>

@@ -16,7 +16,7 @@ export const Home = () => {
           />
         </div> */}
         <div className="text-center">
-          <p className="px-4 sm:px-8 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+          <p className="px-4 sm:px-8 text-2xl leading-8 font-extrabold tracking-tight text-white sm:text-3xl">
             Where Service Providers Rate Homeowners
           </p>
         </div>
