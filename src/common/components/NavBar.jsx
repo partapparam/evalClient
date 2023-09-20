@@ -70,7 +70,7 @@ export const NavBar = () => {
                   <div className="flex space-x-4">
                     <p
                       onClick={openModal}
-                      className="text-slate-100 bg-rose-500 hover:bg-rose-600 transition hover:cursor-pointer duration-300 rounded-md px-3 py-2 text-sm font-medium"
+                      className="text-slate-100 bg-yellow-500 hover:bg-yellow-600 transition hover:cursor-pointer duration-300 rounded-md px-3 py-2 text-sm font-medium"
                     >
                       How Eval Works?
                     </p>
@@ -113,15 +113,18 @@ export const NavBar = () => {
                 </div>
               </div>
               {/* How it works TODO */}
-              {/* <div className="sm:hidden">
-                <QuestionMarkCircleIcon className=" bg-white rounded-full w-6 h-6 text-rose-500 text-xs" />
-              </div> */}
               <div className="sm:hidden">
+                <QuestionMarkCircleIcon
+                  className=" bg-yellow-500 rounded-full w-6 h-6 text-slate-100 text-xs"
+                  onClick={openModal}
+                />
+              </div>
+              {/* <div className="sm:hidden">
                 <ExclamationCircleIcon
                   onClick={openModal}
                   className=" bg-white rounded-full w-6 h-6 text-rose-500 text-xs"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <Transition
