@@ -1,15 +1,25 @@
-import React, { useContext } from "react"
-import { Disclosure, Transition } from "@headlessui/react"
+import React from "react"
+import { Disclosure, Transition, Dialog } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext"
+import { useState, Fragment, useContext } from "react"
+import { HowItWorks } from "../../features/home/HowItWorks"
 
 export const NavBar = () => {
   const { isLoggedIn, logout } = useContext(UserContext)
+  const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
 
   const handleLogout = async () => {
     await logout()
+  }
+
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+  const openModal = () => {
+    setIsOpen(true)
   }
 
   return (
@@ -54,6 +64,7 @@ export const NavBar = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                    <p onClick={openModal}>How It works</p>
                     <Link to="/faq">
                       <p className="text-slate-100 hover:bg-violet-400 transition duration-300 rounded-md px-3 py-2 text-sm font-medium">
                         FAQ
@@ -143,6 +154,43 @@ export const NavBar = () => {
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>
+          </Transition>
+          {/* how It work */}
+
+          <Transition appear show={isOpen} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeModal}>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 bg-black bg-opacity-25" />
+              </Transition.Child>
+              <div className="fixed inset-0 overflow-y-auto">
+                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+                  >
+                    <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                      <Dialog.Title className="text-3xl font-extrabold py-5 text-gray-900">
+                        Provide Feedback
+                      </Dialog.Title>
+                      <HowItWorks closeModal={closeModal} />
+                    </Dialog.Panel>
+                  </Transition.Child>
+                </div>
+              </div>
+            </Dialog>
           </Transition>
         </>
       )}

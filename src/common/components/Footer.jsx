@@ -5,13 +5,13 @@ import { Dialog, Transition } from "@headlessui/react"
 import { FeedbackForm } from "../../features/home/FeedbackForm"
 
 export const Footer = () => {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false)
   }
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true)
   }
   return (
@@ -58,7 +58,6 @@ export const Footer = () => {
               </Transition.Child>
             </div>
           </div>
-          v
         </Dialog>
       </Transition>
     </div>
