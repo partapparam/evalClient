@@ -5,7 +5,7 @@ export const HIWList = [
   },
   {
     title: "Search for an address",
-    content: `Where is your customer located?`,
+    content: `Where is the customer located?`,
   },
   {
     title: "Choose the resident",
@@ -13,6 +13,7 @@ export const HIWList = [
   },
   {
     title: "Review your customer",
-    content: `Be honest and respectful. Reviews are monitored by our team.`,
+    content: `Be honest and respectful, our team monitors reviews. Review our FAQ section to learn about what not to post
+`,
   },
 ]

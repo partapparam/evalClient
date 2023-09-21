@@ -6,7 +6,7 @@ export const HowItWorks = () => {
     <div className="w-full">
       <div className=" mx-auto w-full max-w-md rounded-2xl bg-white space-y-6">
         {HIWList.map((item, index) => (
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center" key={index}>
             <p className="text-lg sm:text-xl px-3 py-1 inline text-white rounded-full bg-purple-400">
               {index + 1}
             </p>

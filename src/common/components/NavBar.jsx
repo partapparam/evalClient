@@ -5,14 +5,10 @@ import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext"
 import { useState, Fragment, useContext } from "react"
 import { HowItWorks } from "../../features/home/HowItWorks"
-import {
-  ExclamationCircleIcon,
-  QuestionMarkCircleIcon,
-} from "@heroicons/react/20/solid"
 
 export const NavBar = () => {
   const { isLoggedIn, logout } = useContext(UserContext)
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -70,7 +66,7 @@ export const NavBar = () => {
                   <div className="flex space-x-4">
                     <p
                       onClick={openModal}
-                      className="text-slate-100 bg-yellow-500 hover:bg-yellow-600 transition hover:cursor-pointer duration-300 rounded-md px-3 py-2 text-sm font-medium"
+                      className="text-black bg-yellow-400 hover:bg-yellow-600 border-2 border-white transition hover:cursor-pointer duration-300 rounded-md px-3 py-2 text-sm font-medium"
                     >
                       How Eval Works?
                     </p>
@@ -112,19 +108,6 @@ export const NavBar = () => {
                   </div>
                 </div>
               </div>
-              {/* How it works TODO */}
-              <div className="sm:hidden">
-                <QuestionMarkCircleIcon
-                  className=" bg-yellow-500 rounded-full w-6 h-6 text-slate-100 text-xs"
-                  onClick={openModal}
-                />
-              </div>
-              {/* <div className="sm:hidden">
-                <ExclamationCircleIcon
-                  onClick={openModal}
-                  className=" bg-white rounded-full w-6 h-6 text-rose-500 text-xs"
-                />
-              </div> */}
             </div>
           </div>
           <Transition
@@ -175,19 +158,17 @@ export const NavBar = () => {
                   </p>
                 </Disclosure.Button>
 
-                {/* TODO How it works  */}
-                {/* <Disclosure.Button>
+                <Disclosure.Button>
                   <p
                     onClick={openModal}
-                    className="text-slate-100 hover:bg-rose-600 bg-rose-500 transition duration-300 rounded-md px-3 py-2 text-sm font-medium"
+                    className="text-black bg-yellow-400 hover:bg-yellow-600 border-2 border-white transition hover:cursor-pointer duration-300 rounded-md px-3 py-2 text-sm font-medium"
                   >
                     How It Works
                   </p>
-                </Disclosure.Button> */}
+                </Disclosure.Button>
               </div>
             </Disclosure.Panel>
           </Transition>
-          {/* how It work */}
 
           <Transition appear show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -217,7 +198,7 @@ export const NavBar = () => {
                       <div className="w-full text-right">
                         <XCircleIcon
                           onClick={closeModal}
-                          className="text-gray-700 w-6 "
+                          className="text-gray-700 w-6"
                         />
                       </div>
                       <Dialog.Title className="text-3xl font-extrabold py-5 text-gray-900 text-center">

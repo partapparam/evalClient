@@ -52,75 +52,74 @@ export const ResidentList = () => {
     setIsOpen(true)
   }
 
-  const noAuthButton = (
-    <>
-      <button type="button" onClick={openModal}>
-        <PlusCircleIcon className="text-amber-500 w-12 h-12" />
-      </button>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+  // const noAuthButton = (
+  //   <>
+  //     <button type="button" onClick={openModal}>
+  //       <PlusCircleIcon className="text-amber-500 w-12 h-12" />
+  //     </button>
+  //     <Transition appear show={isOpen} as={Fragment}>
+  //       <Dialog as="div" className="relative z-10" onClose={closeModal}>
+  //         <Transition.Child
+  //           as={Fragment}
+  //           enter="ease-out duration-300"
+  //           enterFrom="opacity-0"
+  //           enterTo="opacity-100"
+  //           leave="ease-in duration-200"
+  //           leaveFrom="opacity-100"
+  //           leaveTo="opacity-0"
+  //         >
+  //           <div className="fixed inset-0 bg-black bg-opacity-25" />
+  //         </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    Login in to your account to continue.
-                  </Dialog.Title>
-                  <div className="mt-2 text-right">
-                    <Link to="../../login" state={{ path: location.pathname }}>
-                      <button
-                        type="button"
-                        className="rounded-md bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30"
-                        onClick={closeModal}
-                      >
-                        Login
-                      </button>
-                    </Link>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
-  )
+  //         <div className="fixed inset-0 overflow-y-auto">
+  //           <div className="flex min-h-full items-center justify-center p-4 text-center">
+  //             <Transition.Child
+  //               as={Fragment}
+  //               enter="ease-out duration-300"
+  //               enterFrom="opacity-0 scale-95"
+  //               enterTo="opacity-100 scale-100"
+  //               leave="ease-in duration-200"
+  //               leaveFrom="opacity-100 scale-100"
+  //               leaveTo="opacity-0 scale-95"
+  //             >
+  //               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+  //                 <Dialog.Title
+  //                   as="h3"
+  //                   className="text-lg font-medium leading-6 text-gray-900"
+  //                 >
+  //                   Login in to your account to continue.
+  //                 </Dialog.Title>
+  //                 <div className="mt-2 text-right">
+  //                   <Link
+  //                     to={`../../login?redirect=true&address=${searchAddress}`}
+  //                     state={{ path: location.pathname }}
+  //                   >
+  //                     <button
+  //                       type="button"
+  //                       className="rounded-md bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30"
+  //                       onClick={closeModal}
+  //                     >
+  //                       Login
+  //                     </button>
+  //                   </Link>
+  //                 </div>
+  //               </Dialog.Panel>
+  //             </Transition.Child>
+  //           </div>
+  //         </div>
+  //       </Dialog>
+  //     </Transition>
+  //   </>
+  // )
 
   return (
     <>
       <div className="bg-white col-start-1 col-end-13 divide-y">
         <div className="flex flex-row justify-between items-center px-3 py-6">
           <p className="font-extrabold text-3xl sm:text-4xl">Residents</p>
-          {isLoggedIn ? (
-            <Link to={`add?address=${searchAddress}`}>
-              <PlusCircleIcon className="text-amber-500 w-12 h-12" />
-            </Link>
-          ) : (
-            noAuthButton
-          )}
+          <Link to={`add?address=${searchAddress}`}>
+            <PlusCircleIcon className="text-amber-500 w-12 h-12" />
+          </Link>
         </div>
         <p className="text-xl font-light px-4 py-6">{searchAddress}</p>
       </div>
