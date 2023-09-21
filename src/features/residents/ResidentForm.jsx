@@ -8,7 +8,7 @@ import { selectAddressSelector } from "../addresses/address.selectors"
 import { Link } from "react-router-dom"
 import { NoAddress } from "../addresses/NoAddress"
 import { useSearchParams } from "react-router-dom"
-import { replace } from "lodash"
+import { Transition } from "@headlessui/react"
 
 export const ResidentForm = () => {
   const dispatch = useDispatch()
@@ -23,6 +23,7 @@ export const ResidentForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -31,6 +32,9 @@ export const ResidentForm = () => {
       unit: "",
     },
   })
+  // Set a Watch on property type to transition the Unit # display
+  const watchPropertyType = watch("type", "home")
+
   const onSubmit = async (data) => {
     // Add address to form.
     data.address = searchAddress
@@ -83,11 +87,10 @@ export const ResidentForm = () => {
                   type="text"
                   name="firstName"
                   id="firstName"
-                  autoComplete="firstName"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.firstName?.type === "required" && (
-                  <p className="form-input-error" role="alert">
+                  <p className="text-red-600" role="alert">
                     {errors.firstName?.message}
                   </p>
                 )}
@@ -109,11 +112,10 @@ export const ResidentForm = () => {
                   type="text"
                   name="lastName"
                   id="lastName"
-                  autoComplete="lastName"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.lastName?.type === "required" && (
-                  <p className="form-input-error" role="alert">
+                  <p className="text-red-600" role="alert">
                     {errors.lastName?.message}
                   </p>
                 )}
@@ -127,7 +129,7 @@ export const ResidentForm = () => {
             Residence Type
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Is this a Home or is the Resident a tenant of a Multi-Family
+            Is this a Home or is the customer a tenant of a Multi-Family
             Property?
           </p>
 
@@ -139,7 +141,7 @@ export const ResidentForm = () => {
                   className="block appearance-none w-full border border-gray-400 text-gray-800 py-3 px-4 pr-8 mr-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 >
                   <option value="home">Home</option>
-                  <option value="multiFamily">Multi-Family</option>
+                  <option value="multi">Multi-Family</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -151,24 +153,47 @@ export const ResidentForm = () => {
                   </svg>
                 </div>
               </div>
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="apt"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Unit #
-                </label>
-                <div className="mt-2">
-                  <input
-                    {...register("unit")}
-                    type="text"
-                    name="unit"
-                    id="unit"
-                    placeholder="#"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
+              {/* Transition our the Unit # input based on Property Type */}
+              <Transition
+                show={watchPropertyType !== "home"}
+                enter="transition duration-400 ease-out"
+                enterFrom="transform  opacity-0"
+                enterTo="transform  opacity-100"
+                leave="transition duration-400 ease-out"
+                leaveFrom="transform opacity-100"
+                leaveTo="transform opacity-0"
+              >
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="unit"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Unit #
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      {...register("unit", {
+                        validate: {
+                          required: (value) => {
+                            if (!value && watchPropertyType !== "home") {
+                              return "The Unit Number is required"
+                            }
+                            return true
+                          },
+                        },
+                      })}
+                      type="text"
+                      name="unit"
+                      id="unit"
+                      placeholder="#"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                    {errors?.unit && (
+                      <p className="text-red-600">{errors.unit.message}</p>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </Transition>
             </div>
           </div>
         </div>

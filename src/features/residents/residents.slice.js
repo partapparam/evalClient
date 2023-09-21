@@ -28,7 +28,7 @@ const residentsSlice = createSlice({
       })
       .addCase(postResident.fulfilled, (state, action) => {
         state.status = "success"
-        state.cards.push(action.payload)
+        state.cards = [action.payload].concat(state.cards)
       })
       .addCase(postResident.rejected, (state, action) => {
         state.status = "failed"

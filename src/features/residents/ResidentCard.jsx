@@ -10,7 +10,7 @@ export const ResidentCard = ({ resident }) => {
           <div>
             <div className="flex justify-between items-baseline py-4 text-base leading-7 text-gray-800 border-b ">
               <h1 className="text-2xl sm:text-3xl font-bold py-2 block">
-                {resident.firstName.slice(0, 1)}. {resident.lastName}
+                {resident.firstName.charAt(0)}. {resident.lastName}
                 {resident.type !== "home" ? (
                   <p className="text-sm font-light"> Unit: {resident.unit}</p>
                 ) : (

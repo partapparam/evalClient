@@ -39,6 +39,7 @@ export const SignupForm = () => {
   const onSubmit = async (data, e) => {
     e.preventDefault()
     try {
+      if (confirmTerms === true) data.confirmTerms = true
       setAddRequestStatus("pending")
       const user = await dispatch(signupUser(data)).unwrap()
       await login(user)
