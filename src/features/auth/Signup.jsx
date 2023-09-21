@@ -14,7 +14,6 @@ export const SignupForm = () => {
   const navigate = useNavigate()
   const notification = useNotification()
   const [addRequestStatus, setAddRequestStatus] = useState("idle")
-  const [confirmTerms, setConfirmTerms] = useState(false)
   const { login } = useContext(UserContext)
   const password = useRef({})
   const {
@@ -32,14 +31,15 @@ export const SignupForm = () => {
       jobTitle: "",
       industry: "",
       confirmPassword: "",
+      acceptedTerms: false,
     },
   })
   password.current = watch("password", "")
+  const watchAcceptedTerms = watch("acceptedTerms", false)
 
   const onSubmit = async (data, e) => {
     e.preventDefault()
     try {
-      if (confirmTerms === true) data.confirmTerms = true
       setAddRequestStatus("pending")
       const user = await dispatch(signupUser(data)).unwrap()
       await login(user)
@@ -209,7 +209,7 @@ export const SignupForm = () => {
                   {...register("password", {
                     minLength: {
                       value: 6,
-                      message: "Password must be atleast 6 characters.",
+                      message: "Password must be at least 6 characters.",
                     },
                     required: "Password is required",
                   })}
@@ -255,23 +255,24 @@ export const SignupForm = () => {
             <div>
               <input
                 type="checkbox"
-                onClick={() => setConfirmTerms(!confirmTerms)}
+                {...register("acceptedTerms")}
                 className="mr-2"
               />
-              <label>
-                I accept the Eval{" "}
+              <label className="text-sm">
+                I accept the{" "}
                 <span>
-                  <Link to={"/privacyPolicy"}>Privacy Policy and Terms</Link>
-                </span>{" "}
-                of Use.
+                  <Link to={"/privacyPolicy"} className="text-blue-500">
+                    Eval Privacy Policy and Terms of Use
+                  </Link>
+                </span>
               </label>
             </div>
 
             <div>
               <input
-                disabled={!confirmTerms}
+                disabled={!watchAcceptedTerms}
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-emerald-500 hover:bg-emerald-600 py-2 px-3 text-sm font-semibold text-white disabled:opacity-80 disabled:cursor-not-allowed"
+                className="group relative flex w-full justify-center rounded-md bg-emerald-500 hover:bg-emerald-600 py-2 px-3 text-sm font-semibold text-white disabled:bg-gray-400 transition-color duration-300 disabled:cursor-not-allowed"
               />
             </div>
             <div className="font-light text-gray-400 text-center hover:text-gray-900 transition">
